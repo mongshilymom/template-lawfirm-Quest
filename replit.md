@@ -10,6 +10,23 @@ The application follows a client-server architecture with React on the frontend 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+**October 4, 2025 - URL Query Synchronization & Browser History Support**
+- Implemented URL query parameter synchronization for Attorneys and Events pages
+- Added browser back/forward navigation support using wouter router integration
+- Korean slug encoding/decoding for practice areas and filters
+- Navigation flag pattern to prevent history stack overwriting
+- All filter states (search, practiceArea, office, type) persist across page refreshes and history navigation
+
+**Zero-Defect Production Template Complete**
+- All legal disclaimers and privacy notices in place
+- Prohibited terms scanner integrated in CI/CD
+- Double opt-in consultation system operational
+- SEO optimization with robots.txt, sitemap.xml, and JSON-LD schema
+- Full accessibility compliance with focus traps and ARIA attributes
+- GitHub Actions workflows for quality checks and dependency reviews
+
 ## System Architecture
 
 ### Frontend Architecture
