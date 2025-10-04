@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useLocation } from 'wouter';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,7 +12,11 @@ import type { Event } from '@shared/schema';
 
 export default function EventsPage() {
   const { language } = useLanguage();
-  const [selectedType, setSelectedType] = useState<string>('all');
+  const [location, setLocation] = useLocation();
+  const isNavigatingRef = useRef(false);
+  
+  const params = new URLSearchParams(window.location.search);
+  const [selectedType, setSelectedType] = useState<string>(params.get('type') || 'all');
 
   const { data: events = [], isLoading } = useQuery<Event[]>({
     queryKey: ['/api/events'],
@@ -35,6 +40,33 @@ export default function EventsPage() {
   const pastEvents = filteredEvents.filter(
     (event) => new Date(event.date) < new Date()
   );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlType = params.get('type') || 'all';
+    
+    if (urlType !== selectedType) {
+      isNavigatingRef.current = true;
+      setSelectedType(urlType);
+      setTimeout(() => { isNavigatingRef.current = false; }, 0);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    if (isNavigatingRef.current) return;
+    
+    const params = new URLSearchParams();
+    if (selectedType !== 'all') params.set('type', selectedType);
+    
+    const newSearch = params.toString();
+    const currentPath = window.location.pathname;
+    const newUrl = newSearch ? `${currentPath}?${newSearch}` : currentPath;
+    const currentUrl = window.location.pathname + window.location.search;
+    
+    if (currentUrl !== newUrl) {
+      setLocation(newUrl);
+    }
+  }, [selectedType, setLocation]);
 
   return (
     <div className="min-h-screen bg-background">

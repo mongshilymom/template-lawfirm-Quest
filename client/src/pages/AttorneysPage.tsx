@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useLocation } from 'wouter';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -12,9 +13,15 @@ import type { Attorney, PracticeArea, Office } from '@shared/schema';
 
 export default function AttorneysPage() {
   const { language } = useLanguage();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedPracticeArea, setSelectedPracticeArea] = useState<string>('all');
-  const [selectedOffice, setSelectedOffice] = useState<string>('all');
+  const [location, setLocation] = useLocation();
+  const isNavigatingRef = useRef(false);
+  
+  const params = new URLSearchParams(window.location.search);
+  const [searchQuery, setSearchQuery] = useState(params.get('search') || '');
+  const [selectedPracticeArea, setSelectedPracticeArea] = useState<string>(
+    params.get('practiceArea') || 'all'
+  );
+  const [selectedOffice, setSelectedOffice] = useState<string>(params.get('office') || 'all');
 
   const { data: attorneys = [], isLoading: isLoadingAttorneys } = useQuery<Attorney[]>({
     queryKey: ['/api/attorneys'],
@@ -72,6 +79,39 @@ export default function AttorneysPage() {
 
   const hasActiveFilters =
     searchQuery || selectedPracticeArea !== 'all' || selectedOffice !== 'all';
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlSearch = params.get('search') || '';
+    const urlPracticeArea = params.get('practiceArea') || 'all';
+    const urlOffice = params.get('office') || 'all';
+    
+    if (urlSearch !== searchQuery || urlPracticeArea !== selectedPracticeArea || urlOffice !== selectedOffice) {
+      isNavigatingRef.current = true;
+      setSearchQuery(urlSearch);
+      setSelectedPracticeArea(urlPracticeArea);
+      setSelectedOffice(urlOffice);
+      setTimeout(() => { isNavigatingRef.current = false; }, 0);
+    }
+  }, [location]);
+
+  useEffect(() => {
+    if (isNavigatingRef.current) return;
+    
+    const params = new URLSearchParams();
+    if (searchQuery) params.set('search', searchQuery);
+    if (selectedPracticeArea !== 'all') params.set('practiceArea', selectedPracticeArea);
+    if (selectedOffice !== 'all') params.set('office', selectedOffice);
+    
+    const newSearch = params.toString();
+    const currentPath = window.location.pathname;
+    const newUrl = newSearch ? `${currentPath}?${newSearch}` : currentPath;
+    const currentUrl = window.location.pathname + window.location.search;
+    
+    if (currentUrl !== newUrl) {
+      setLocation(newUrl);
+    }
+  }, [searchQuery, selectedPracticeArea, selectedOffice, setLocation]);
 
   return (
     <div className="min-h-screen bg-background">
