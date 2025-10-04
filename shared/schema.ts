@@ -120,6 +120,28 @@ export const insertContactSchema = createInsertSchema(contacts).omit({
   submittedAt: true,
 });
 
+export const consultations = pgTable("consultations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  status: text("status").notNull().default('pending'),
+  token: text("token").notNull().unique(),
+  submittedAt: text("submitted_at").notNull(),
+  confirmedAt: text("confirmed_at"),
+});
+
+export const insertConsultationSchema = createInsertSchema(consultations).omit({
+  id: true,
+  status: true,
+  token: true,
+  submittedAt: true,
+  confirmedAt: true,
+});
+
 export type InsertPracticeArea = z.infer<typeof insertPracticeAreaSchema>;
 export type PracticeArea = typeof practiceAreas.$inferSelect;
 
@@ -143,3 +165,6 @@ export type Subscription = typeof subscriptions.$inferSelect;
 
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
+
+export type InsertConsultation = z.infer<typeof insertConsultationSchema>;
+export type Consultation = typeof consultations.$inferSelect;

@@ -15,6 +15,8 @@ import {
   type InsertSubscription,
   type Contact,
   type InsertContact,
+  type Consultation,
+  type InsertConsultation,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -28,6 +30,9 @@ export interface IStorage {
   createSubscription(data: InsertSubscription): Promise<Subscription>;
   getSubscriptionByEmail(email: string): Promise<Subscription | undefined>;
   createContact(data: InsertContact): Promise<Contact>;
+  createConsultation(data: InsertConsultation): Promise<Consultation>;
+  getConsultationByToken(token: string): Promise<Consultation | undefined>;
+  confirmConsultation(token: string): Promise<Consultation>;
 }
 
 export class MemStorage implements IStorage {
@@ -39,6 +44,7 @@ export class MemStorage implements IStorage {
   private events: Map<string, Event>;
   private subscriptions: Map<string, Subscription>;
   private contacts: Map<string, Contact>;
+  private consultations: Map<string, Consultation>;
 
   constructor() {
     this.practiceAreas = new Map();
@@ -49,6 +55,7 @@ export class MemStorage implements IStorage {
     this.events = new Map();
     this.subscriptions = new Map();
     this.contacts = new Map();
+    this.consultations = new Map();
 
     this.seedData();
   }
@@ -628,6 +635,48 @@ export class MemStorage implements IStorage {
     };
     this.contacts.set(id, contact);
     return contact;
+  }
+
+  async createConsultation(data: InsertConsultation): Promise<Consultation> {
+    const id = randomUUID();
+    const token = randomUUID();
+    const submittedAt = new Date().toISOString();
+    const consultation: Consultation = {
+      id,
+      ...data,
+      phone: data.phone ?? null,
+      company: data.company ?? null,
+      status: 'pending',
+      token,
+      submittedAt,
+      confirmedAt: null,
+    };
+    this.consultations.set(id, consultation);
+    return consultation;
+  }
+
+  async getConsultationByToken(token: string): Promise<Consultation | undefined> {
+    return Array.from(this.consultations.values()).find((c) => c.token === token);
+  }
+
+  async confirmConsultation(token: string): Promise<Consultation> {
+    const consultation = await this.getConsultationByToken(token);
+    if (!consultation) {
+      throw new Error('Invalid confirmation token');
+    }
+    
+    if (consultation.status === 'confirmed') {
+      throw new Error('Consultation already confirmed');
+    }
+
+    const confirmedAt = new Date().toISOString();
+    const updated: Consultation = {
+      ...consultation,
+      status: 'confirmed',
+      confirmedAt,
+    };
+    this.consultations.set(consultation.id, updated);
+    return updated;
   }
 }
 
