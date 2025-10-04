@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'wouter';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useRoute } from 'wouter';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,7 +9,9 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,25 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscKey);
+      const firstFocusable = mobileMenuRef.current?.querySelector('a') as HTMLElement;
+      firstFocusable?.focus();
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [isMobileMenuOpen]);
 
   const menuItems = [
     { pathKo: '#intro', pathEn: '#intro', labelKo: 'INTRO', labelEn: 'INTRO' },
@@ -47,7 +68,7 @@ export function Header() {
             </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main navigation">
             {menuItems.map((item) => {
               const path = language === 'ko' ? item.pathKo : item.pathEn;
               const label = language === 'ko' ? item.labelKo : item.labelEn;
@@ -58,7 +79,8 @@ export function Header() {
                   key={path}
                   href={path}
                   data-testid={`link-${item.labelEn.toLowerCase()}`}
-                  className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`text-sm font-medium tracking-wide transition-colors hover:text-primary focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-sm ${
                     isActive ? 'text-primary' : 'text-foreground'
                   }`}
                 >
@@ -68,7 +90,9 @@ export function Header() {
                 <Link key={path} href={path}>
                   <span
                     data-testid={`link-${item.labelEn.toLowerCase()}`}
-                    className={`text-sm font-medium tracking-wide transition-colors hover:text-primary cursor-pointer ${
+                    aria-current={isActive ? 'page' : undefined}
+                    tabIndex={0}
+                    className={`text-sm font-medium tracking-wide transition-colors hover:text-primary focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-sm cursor-pointer ${
                       isActive ? 'text-primary' : 'text-foreground'
                     }`}
                   >
@@ -87,18 +111,23 @@ export function Header() {
               size="icon"
               onClick={toggleLanguage}
               data-testid="button-language-toggle"
+              aria-label={`Switch to ${language === 'ko' ? 'English' : '한국어'}`}
               className="rounded-md"
             >
               <Globe className="w-5 h-5" />
-              <span className="sr-only">Language toggle</span>
+              <span className="sr-only">{`Switch to ${language === 'ko' ? 'English' : '한국어'}`}</span>
             </Button>
 
             <Button
+              ref={mobileMenuButtonRef}
               variant="ghost"
               size="icon"
               className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
+              aria-label={isMobileMenuOpen ? 'Close mobile menu' : 'Open mobile menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
@@ -106,32 +135,52 @@ export function Header() {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div 
+            ref={mobileMenuRef}
+            id="mobile-menu"
+            className="md:hidden py-4 border-t"
+            role="navigation"
+            aria-label="Mobile navigation"
+          >
             <nav className="flex flex-col gap-4">
-              {menuItems.map((item) => {
+              {menuItems.map((item, index) => {
                 const path = language === 'ko' ? item.pathKo : item.pathEn;
                 const label = language === 'ko' ? item.labelKo : item.labelEn;
+                const isFirst = index === 0;
+                const isLast = index === menuItems.length - 1;
                 
-                return path.startsWith('#') ? (
+                const handleKeyDown = (e: any) => {
+                  if (e.key === 'Tab' && !e.shiftKey && isLast) {
+                    e.preventDefault();
+                    const firstLink = mobileMenuRef.current?.querySelector('a') as HTMLElement;
+                    firstLink?.focus();
+                  } else if (e.key === 'Tab' && e.shiftKey && isFirst) {
+                    e.preventDefault();
+                    const allLinks = mobileMenuRef.current?.querySelectorAll('a');
+                    const lastLink = allLinks?.[allLinks.length - 1] as HTMLElement;
+                    lastLink?.focus();
+                  }
+                };
+
+                const handleClick = (e: any) => {
+                  if (!path.startsWith('#')) {
+                    e.preventDefault();
+                    navigate(path);
+                  }
+                  setIsMobileMenuOpen(false);
+                };
+                
+                return (
                   <a
                     key={path}
                     href={path}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={handleClick}
+                    onKeyDown={handleKeyDown}
                     data-testid={`link-mobile-${item.labelEn.toLowerCase()}`}
-                    className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                    className="text-sm font-medium text-foreground hover:text-primary focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-sm transition-colors py-2"
                   >
                     {label}
                   </a>
-                ) : (
-                  <Link key={path} href={path}>
-                    <span
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      data-testid={`link-mobile-${item.labelEn.toLowerCase()}`}
-                      className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2 cursor-pointer block"
-                    >
-                      {label}
-                    </span>
-                  </Link>
                 );
               })}
             </nav>
