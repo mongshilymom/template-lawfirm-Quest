@@ -114,6 +114,7 @@ export function Header() {
                     key={path}
                     href={path}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    data-testid={`link-mobile-${item.labelEn.toLowerCase()}`}
                     className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                   >
                     {label}
@@ -122,6 +123,7 @@ export function Header() {
                   <Link key={path} href={path}>
                     <span
                       onClick={() => setIsMobileMenuOpen(false)}
+                      data-testid={`link-mobile-${item.labelEn.toLowerCase()}`}
                       className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2 cursor-pointer block"
                     >
                       {label}

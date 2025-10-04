@@ -56,10 +56,16 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4">
+            <h3 
+              className="text-lg font-semibold text-foreground mb-4"
+              data-testid="text-footer-about-title"
+            >
               {language === 'ko' ? footerSections.about.titleKo : footerSections.about.titleEn}
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p 
+              className="text-sm text-muted-foreground leading-relaxed"
+              data-testid="text-footer-about-description"
+            >
               {language === 'ko'
                 ? footerSections.about.descriptionKo
                 : footerSections.about.descriptionEn}
@@ -78,13 +84,17 @@ export function Footer() {
                   {link.href.startsWith('#') ? (
                     <a
                       href={link.href}
+                      data-testid={`link-footer-${link.labelEn.toLowerCase().replace(' ', '-')}`}
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       {language === 'ko' ? link.labelKo : link.labelEn}
                     </a>
                   ) : (
                     <Link href={link.href}>
-                      <span className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                      <span 
+                        data-testid={`link-footer-${link.labelEn.toLowerCase().replace(' ', '-')}`}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                      >
                         {language === 'ko' ? link.labelKo : link.labelEn}
                       </span>
                     </Link>
@@ -139,18 +149,23 @@ export function Footer() {
 
         <div className="pt-8 border-t">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
+            <p 
+              className="text-sm text-muted-foreground"
+              data-testid="text-copyright"
+            >
               © 2025 Bae, Kim & Lee LLC. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a
                 href="#"
+                data-testid="link-privacy-policy"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {language === 'ko' ? '개인정보처리방침' : 'Privacy Policy'}
               </a>
               <a
                 href="#"
+                data-testid="link-terms-of-service"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {language === 'ko' ? '이용약관' : 'Terms of Service'}
