@@ -88,7 +88,7 @@ export function PracticeAreasSection({ practiceAreas }: PracticeAreasSectionProp
                   {language === 'ko' ? area.descriptionKo : area.descriptionEn}
                 </p>
                 <Button
-                  variant="link"
+                  variant="ghost"
                   className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all p-0 h-auto"
                   data-testid={`button-learn-more-${area.id}`}
                 >

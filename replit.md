@@ -52,6 +52,7 @@ Preferred communication style: Simple, everyday language.
   - Newsletters (`/api/newsletters`)
   - Attorneys (`/api/attorneys`)
   - Offices (`/api/offices`)
+  - Events (`/api/events`)
 
 **Data Layer**
 - Drizzle ORM as the database toolkit and query builder
@@ -75,6 +76,7 @@ Preferred communication style: Simple, everyday language.
   - `newsletters`: Firm newsletters and publications
   - `attorneys`: Attorney profiles with practice areas and office locations
   - `offices`: Global office locations
+  - `events`: Seminars, workshops, conferences, and webinars with dates and registration
 
 **ORM Strategy**
 - Drizzle ORM for type-safe database queries

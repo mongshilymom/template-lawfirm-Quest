@@ -75,6 +75,51 @@ export const insertOfficeSchema = createInsertSchema(offices).omit({
   id: true,
 });
 
+export const events = pgTable("events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  titleKo: text("title_ko").notNull(),
+  titleEn: text("title_en").notNull(),
+  descriptionKo: text("description_ko").notNull(),
+  descriptionEn: text("description_en").notNull(),
+  date: text("date").notNull(),
+  time: text("time").notNull(),
+  location: text("location").notNull(),
+  type: text("type").notNull(),
+  imageUrl: text("image_url").notNull(),
+  registrationUrl: text("registration_url"),
+});
+
+export const insertEventSchema = createInsertSchema(events).omit({
+  id: true,
+});
+
+export const subscriptions = pgTable("subscriptions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  subscribedAt: text("subscribed_at").notNull(),
+});
+
+export const insertSubscriptionSchema = createInsertSchema(subscriptions).omit({
+  id: true,
+  subscribedAt: true,
+});
+
+export const contacts = pgTable("contacts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").default(''),
+  company: text("company").default(''),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  submittedAt: text("submitted_at").notNull(),
+});
+
+export const insertContactSchema = createInsertSchema(contacts).omit({
+  id: true,
+  submittedAt: true,
+});
+
 export type InsertPracticeArea = z.infer<typeof insertPracticeAreaSchema>;
 export type PracticeArea = typeof practiceAreas.$inferSelect;
 
@@ -89,3 +134,12 @@ export type Attorney = typeof attorneys.$inferSelect;
 
 export type InsertOffice = z.infer<typeof insertOfficeSchema>;
 export type Office = typeof offices.$inferSelect;
+
+export type InsertEvent = z.infer<typeof insertEventSchema>;
+export type Event = typeof events.$inferSelect;
+
+export type InsertSubscription = z.infer<typeof insertSubscriptionSchema>;
+export type Subscription = typeof subscriptions.$inferSelect;
+
+export type InsertContact = z.infer<typeof insertContactSchema>;
+export type Contact = typeof contacts.$inferSelect;

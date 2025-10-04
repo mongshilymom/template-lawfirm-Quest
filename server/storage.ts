@@ -9,6 +9,12 @@ import {
   type InsertAttorney,
   type Office,
   type InsertOffice,
+  type Event,
+  type InsertEvent,
+  type Subscription,
+  type InsertSubscription,
+  type Contact,
+  type InsertContact,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -18,6 +24,10 @@ export interface IStorage {
   getNewsletters(): Promise<Newsletter[]>;
   getAttorneys(): Promise<Attorney[]>;
   getOffices(): Promise<Office[]>;
+  getEvents(): Promise<Event[]>;
+  createSubscription(data: InsertSubscription): Promise<Subscription>;
+  getSubscriptionByEmail(email: string): Promise<Subscription | undefined>;
+  createContact(data: InsertContact): Promise<Contact>;
 }
 
 export class MemStorage implements IStorage {
@@ -26,6 +36,9 @@ export class MemStorage implements IStorage {
   private newsletters: Map<string, Newsletter>;
   private attorneys: Map<string, Attorney>;
   private offices: Map<string, Office>;
+  private events: Map<string, Event>;
+  private subscriptions: Map<string, Subscription>;
+  private contacts: Map<string, Contact>;
 
   constructor() {
     this.practiceAreas = new Map();
@@ -33,6 +46,9 @@ export class MemStorage implements IStorage {
     this.newsletters = new Map();
     this.attorneys = new Map();
     this.offices = new Map();
+    this.events = new Map();
+    this.subscriptions = new Map();
+    this.contacts = new Map();
 
     this.seedData();
   }
@@ -450,6 +466,98 @@ export class MemStorage implements IStorage {
       const id = randomUUID();
       this.offices.set(id, { id, ...data });
     });
+
+    const eventsData: InsertEvent[] = [
+      {
+        titleKo: 'AI와 법률: 생성형 AI 시대의 기업 법무',
+        titleEn: 'AI and Law: Corporate Legal in the Age of Generative AI',
+        descriptionKo:
+          '생성형 AI가 기업 법무에 미치는 영향과 대응 전략을 논의하는 세미나입니다. AI 규제, 데이터 보호, 책임 소재 등 핵심 이슈를 다룹니다.',
+        descriptionEn:
+          'A seminar discussing the impact of generative AI on corporate legal affairs and response strategies. Covers key issues including AI regulation, data protection, and liability.',
+        date: '2025-11-15',
+        time: '14:00 - 17:00',
+        location: '센트로폴리스 Conference Hall A',
+        type: 'Seminar',
+        imageUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
+        registrationUrl: '#register',
+      },
+      {
+        titleKo: 'M&A 실무 워크숍',
+        titleEn: 'M&A Practical Workshop',
+        descriptionKo:
+          '국내외 M&A 거래의 최신 동향과 실무 전략을 공유하는 워크숍입니다. Due diligence부터 계약 체결까지의 전 과정을 실습합니다.',
+        descriptionEn:
+          'Workshop sharing latest trends and practical strategies in domestic and international M&A transactions. Hands-on practice from due diligence to contract execution.',
+        date: '2025-11-28',
+        time: '09:30 - 16:00',
+        location: '센트로폴리스 Seminar Room B',
+        type: 'Workshop',
+        imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+        registrationUrl: '#register',
+      },
+      {
+        titleKo: '2025 자본시장 법률 컨퍼런스',
+        titleEn: '2025 Capital Markets Legal Conference',
+        descriptionKo:
+          '자본시장 규제 변화와 ESG 공시, 지배구조 개선 등 최신 이슈를 다루는 연례 컨퍼런스입니다.',
+        descriptionEn:
+          'Annual conference covering capital market regulatory changes, ESG disclosure, and corporate governance improvements.',
+        date: '2025-12-05',
+        time: '13:00 - 18:00',
+        location: '서울 그랜드 호텔',
+        type: 'Conference',
+        imageUrl: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop',
+        registrationUrl: '#register',
+      },
+      {
+        titleKo: '국제중재 실무 세미나',
+        titleEn: 'International Arbitration Practice Seminar',
+        descriptionKo:
+          'ICC, SIAC 등 주요 국제중재기관의 절차와 실무 경험을 공유하는 세미나입니다.',
+        descriptionEn:
+          'Seminar sharing procedures and practical experience of major international arbitration institutions including ICC and SIAC.',
+        date: '2026-01-18',
+        time: '15:00 - 17:30',
+        location: '센트로폴리스 Conference Hall B',
+        type: 'Seminar',
+        imageUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop',
+        registrationUrl: '#register',
+      },
+      {
+        titleKo: '스타트업 법무 지원 프로그램',
+        titleEn: 'Startup Legal Support Program',
+        descriptionKo:
+          '초기 스타트업을 위한 법률 자문 및 투자 유치 전략을 제공하는 프로그램입니다.',
+        descriptionEn:
+          'Program providing legal consultation and investment strategies for early-stage startups.',
+        date: '2026-02-14',
+        time: '10:00 - 12:00',
+        location: '판교 분사무소',
+        type: 'Program',
+        imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop',
+        registrationUrl: '#register',
+      },
+      {
+        titleKo: '개인정보보호법 개정 설명회',
+        titleEn: 'Personal Data Protection Law Amendment Briefing',
+        descriptionKo:
+          '개인정보보호법 개정안의 주요 내용과 기업 대응 방안을 설명하는 브리핑입니다.',
+        descriptionEn:
+          'Briefing on key provisions of the Personal Data Protection Law amendments and corporate response measures.',
+        date: '2026-03-22',
+        time: '14:30 - 16:30',
+        location: 'Online Webinar',
+        type: 'Webinar',
+        imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
+        registrationUrl: '#register',
+      },
+    ];
+
+    eventsData.forEach((data) => {
+      const id = randomUUID();
+      this.events.set(id, { id, ...data });
+    });
   }
 
   async getPracticeAreas(): Promise<PracticeArea[]> {
@@ -474,6 +582,37 @@ export class MemStorage implements IStorage {
 
   async getOffices(): Promise<Office[]> {
     return Array.from(this.offices.values());
+  }
+
+  async getEvents(): Promise<Event[]> {
+    return Array.from(this.events.values()).sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+  }
+
+  async createSubscription(data: InsertSubscription): Promise<Subscription> {
+    const existing = await this.getSubscriptionByEmail(data.email);
+    if (existing) {
+      throw new Error('Email already subscribed');
+    }
+
+    const id = randomUUID();
+    const subscribedAt = new Date().toISOString();
+    const subscription: Subscription = { id, ...data, subscribedAt };
+    this.subscriptions.set(id, subscription);
+    return subscription;
+  }
+
+  async getSubscriptionByEmail(email: string): Promise<Subscription | undefined> {
+    return Array.from(this.subscriptions.values()).find((sub) => sub.email === email);
+  }
+
+  async createContact(data: InsertContact): Promise<Contact> {
+    const id = randomUUID();
+    const submittedAt = new Date().toISOString();
+    const contact: Contact = { id, ...data, submittedAt };
+    this.contacts.set(id, contact);
+    return contact;
   }
 }
 

@@ -25,7 +25,10 @@ export function Header() {
     { pathKo: '#practices', pathEn: '#practices', labelKo: 'PRACTICES', labelEn: 'PRACTICES' },
     { pathKo: '#news', pathEn: '#news', labelKo: 'NEWS', labelEn: 'NEWS' },
     { pathKo: '#insights', pathEn: '#insights', labelKo: 'INSIGHTS', labelEn: 'INSIGHTS' },
+    { pathKo: '/attorneys', pathEn: '/attorneys', labelKo: 'ATTORNEYS', labelEn: 'ATTORNEYS' },
+    { pathKo: '/events', pathEn: '/events', labelKo: 'EVENTS', labelEn: 'EVENTS' },
     { pathKo: '/about', pathEn: '/about', labelKo: 'ABOUT', labelEn: 'ABOUT' },
+    { pathKo: '/contact', pathEn: '/contact', labelKo: 'CONTACT', labelEn: 'CONTACT' },
   ];
 
   return (

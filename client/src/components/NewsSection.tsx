@@ -90,7 +90,7 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
                       )}
                     </div>
                     <Button
-                      variant="link"
+                      variant="ghost"
                       className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all mt-4 p-0 h-auto"
                       data-testid={`button-read-more-${featuredNews.id}`}
                     >

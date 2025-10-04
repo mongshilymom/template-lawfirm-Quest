@@ -50,7 +50,7 @@ export function InsightsSection({ newsletters }: InsightsSectionProps) {
                   {language === 'ko' ? newsletter.titleKo : newsletter.titleEn}
                 </h3>
                 <Button
-                  variant="link"
+                  variant="ghost"
                   className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all text-sm p-0 h-auto"
                   data-testid={`button-read-newsletter-${newsletter.id}`}
                 >

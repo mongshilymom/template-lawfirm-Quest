@@ -1,9 +1,51 @@
+import { useState } from 'react';
 import { Link } from 'wouter';
 import { MapPin, Phone, Mail, Globe } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { apiRequest } from '@/lib/queryClient';
 
 export function Footer() {
   const { language } = useLanguage();
+  const { toast } = useToast();
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      toast({
+        title: language === 'ko' ? '오류' : 'Error',
+        description: language === 'ko' ? '유효한 이메일을 입력해주세요.' : 'Please enter a valid email address.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await apiRequest('POST', '/api/subscriptions', { email });
+
+      toast({
+        title: language === 'ko' ? '구독 완료' : 'Subscription Successful',
+        description: language === 'ko' 
+          ? '뉴스레터 구독이 완료되었습니다.'
+          : 'You have successfully subscribed to our newsletter.',
+      });
+      setEmail('');
+    } catch (error: any) {
+      toast({
+        title: language === 'ko' ? '오류' : 'Error',
+        description: error.message || (language === 'ko' ? '구독 중 오류가 발생했습니다.' : 'An error occurred during subscription.'),
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const footerSections = {
     about: {
@@ -54,6 +96,45 @@ export function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="mb-12 pb-12 border-b">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 
+              className="text-2xl font-serif font-semibold text-foreground mb-4"
+              data-testid="text-newsletter-title"
+            >
+              {language === 'ko' ? '뉴스레터 구독' : 'Subscribe to Newsletter'}
+            </h3>
+            <p 
+              className="text-muted-foreground mb-6"
+              data-testid="text-newsletter-description"
+            >
+              {language === 'ko'
+                ? '최신 법률 동향과 인사이트를 이메일로 받아보세요.'
+                : 'Receive the latest legal trends and insights via email.'}
+            </p>
+            <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder={language === 'ko' ? '이메일 주소' : 'Email address'}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                data-testid="input-newsletter-email"
+                className="flex-1"
+                disabled={isSubmitting}
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                data-testid="button-subscribe-newsletter"
+              >
+                {isSubmitting 
+                  ? (language === 'ko' ? '처리중...' : 'Submitting...') 
+                  : (language === 'ko' ? '구독하기' : 'Subscribe')}
+              </Button>
+            </form>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <h3 
