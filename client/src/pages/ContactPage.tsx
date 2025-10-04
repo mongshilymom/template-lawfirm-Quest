@@ -193,8 +193,8 @@ export default function ContactPage() {
                               type="email"
                               placeholder={
                                 language === 'ko'
-                                  ? 'hong@example.com'
-                                  : 'john@example.com'
+                                  ? 'hong@questlegal.co.kr'
+                                  : 'john@questlegal.co.kr'
                               }
                               data-testid="input-contact-email"
                             />
