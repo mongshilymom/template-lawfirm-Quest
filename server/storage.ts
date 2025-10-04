@@ -59,9 +59,9 @@ export class MemStorage implements IStorage {
         titleKo: 'Corporate Governance',
         titleEn: 'Corporate Governance',
         descriptionKo:
-          'BKL은 지배구조 확립부터 경영권 분쟁 대응에 이르기까지 기업지배구조 전반에 대해 고객 맞춤형 통합 자문과 실행 전략을 제시합니다.',
+          '지배구조 확립부터 경영권 분쟁 대응에 이르기까지 기업지배구조 전반에 대해 고객 맞춤형 통합 자문과 실행 전략을 제시합니다.',
         descriptionEn:
-          'BKL provides customized integrated advice and implementation strategies for all aspects of corporate governance, from establishing governance structures to responding to management disputes.',
+          'We provide customized integrated advice and implementation strategies for all aspects of corporate governance, from establishing governance structures to responding to management disputes.',
         imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
         order: 1,
       },
@@ -69,9 +69,9 @@ export class MemStorage implements IStorage {
         titleKo: 'Customs & International Trade',
         titleEn: 'Customs & International Trade',
         descriptionKo:
-          'BKL의 관세·국제통상 그룹은 FTA, 이전가격, 신상품, 조사 강화, 보호주의 등 국내외적 관세·통상 환경의 변화·위협에 대해 고객의 요구를 만족시킬 수 있는 통합적인 솔루션을 제공하고 있습니다.',
+          '관세·국제통상 그룹은 FTA, 이전가격, 신상품, 조사 강화, 보호주의 등 국내외적 관세·통상 환경의 변화·위협에 대해 고객의 요구를 충족시킬 수 있는 통합적인 솔루션을 제공하고 있습니다.',
         descriptionEn:
-          'BKL\'s Customs & International Trade group provides integrated solutions to meet client needs amid changes and threats in the domestic and international customs and trade environment.',
+          'Our Customs & International Trade group provides integrated solutions to meet client needs amid changes and threats in the domestic and international customs and trade environment.',
         imageUrl: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&h=600&fit=crop',
         order: 2,
       },
@@ -79,9 +79,9 @@ export class MemStorage implements IStorage {
         titleKo: 'Antitrust & Competition',
         titleEn: 'Antitrust & Competition',
         descriptionKo:
-          'BKL 공정거래그룹은 탁월한 전문성을 바탕으로 공정거래 관련 규제 대응, 행정 및 민∙형사소송, 기업결합신고, 컴플라이언스 및 입법자문 등 공정거래 관련 업무 전반을 진행하고 있습니다.',
+          '공정거래그룹은 탁월한 전문성을 바탕으로 공정거래 관련 규제 대응, 행정 및 민∙형사소송, 기업결합신고, 컴플라이언스 및 입법자문 등 공정거래 관련 업무 전반을 진행하고 있습니다.',
         descriptionEn:
-          'BKL\'s Antitrust & Competition group handles all antitrust-related matters including regulatory compliance, administrative and civil/criminal litigation, merger notifications, and legislative advice.',
+          'Our Antitrust & Competition group handles all antitrust-related matters including regulatory compliance, administrative and civil/criminal litigation, merger notifications, and legislative advice.',
         imageUrl: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop',
         order: 3,
       },
@@ -89,9 +89,9 @@ export class MemStorage implements IStorage {
         titleKo: 'Regulatory & Compliance',
         titleEn: 'Regulatory & Compliance',
         descriptionKo:
-          'BKL 컴플라이언스 그룹은 컴플라이언스 업무에 대한 풍부한 자문 경험과 고도의 전문성을 바탕으로 고객이 당면한 문제는 물론 잠재적인 이슈들까지 최적의 솔루션을 제공하고 있습니다.',
+          '컴플라이언스 그룹은 컴플라이언스 업무에 대한 풍부한 자문 경험과 고도의 전문성을 바탕으로 고객이 당면한 문제는 물론 잠재적인 이슈들까지 최적의 솔루션을 제공하고 있습니다.',
         descriptionEn:
-          'BKL\'s Compliance group provides optimal solutions for both current issues and potential problems based on extensive advisory experience and high-level expertise.',
+          'Our Compliance group provides optimal solutions for both current issues and potential problems based on extensive advisory experience and high-level expertise.',
         imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=600&fit=crop',
         order: 4,
       },
@@ -109,9 +109,9 @@ export class MemStorage implements IStorage {
         titleKo: 'International Arbitration',
         titleEn: 'International Arbitration',
         descriptionKo:
-          'BKL은 국제중재 분야에서 오랜 경험과 전문성을 보유하고 있으며, ICC, SIAC, HKIAC 등 주요 국제중재기관에서 다양한 사건을 수행하고 있습니다.',
+          '국제중재 분야에서 오랜 경험과 전문성을 보유하고 있으며, ICC, SIAC, HKIAC 등 주요 국제중재기관에서 다양한 사건을 수행하고 있습니다.',
         descriptionEn:
-          'BKL has extensive experience and expertise in international arbitration, handling various cases at major international arbitration institutions including ICC, SIAC, and HKIAC.',
+          'We have extensive experience and expertise in international arbitration, handling various cases at major international arbitration institutions including ICC, SIAC, and HKIAC.',
         imageUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop',
         order: 6,
       },
@@ -124,12 +124,12 @@ export class MemStorage implements IStorage {
 
     const newsItemsData: InsertNewsItem[] = [
       {
-        titleKo: '태평양 \'거버넌스 솔루션 센터\' 출범',
-        titleEn: 'BKL Launches \'Governance Solution Center\'',
+        titleKo: 'QUEST Legal \'거버넌스 솔루션 센터\' 출범',
+        titleEn: 'QUEST Legal Launches \'Governance Solution Center\'',
         descriptionKo:
-          '법무법인(유한) 태평양("BKL")이 기업 지배구조 이슈와 주주간 분쟁, 자본시장 규제 등에 종합적으로 대응하는 \'거버넌스 솔루션 센터(Governance Solution Center)를\' 출범했습니다.',
+          'QUEST Legal이 기업 지배구조 이슈와 주주간 분쟁, 자본시장 규제 등에 종합적으로 대응하는 \'거버넌스 솔루션 센터(Governance Solution Center)를\' 출범했습니다.',
         descriptionEn:
-          'Bae, Kim & Lee LLC (BKL) has launched the Governance Solution Center to comprehensively address corporate governance issues, shareholder disputes, and capital market regulations.',
+          'QUEST Legal has launched the Governance Solution Center to comprehensively address corporate governance issues, shareholder disputes, and capital market regulations.',
         category: 'Select Topics',
         date: '2025-07-04',
         imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
@@ -138,42 +138,42 @@ export class MemStorage implements IStorage {
         titleKo: '2년 연속 전 분야 상위권 최고 평가',
         titleEn: '2 Years Consecutive Top Rankings Across All Fields',
         descriptionKo:
-          '법무법인(유한) 태평양(이하 "BKL")이 \'2025 로펌 컨수머 리포트\'(법률신문·IHCF·한국사내변호사회 공동기획)에서 전 분야 상위권을 기록하며 2년 연속 최고 평가를 받았습니다.',
+          'QUEST Legal이 \'2025 로펌 컨수머 리포트\'(법률신문·IHCF·한국사내변호사회 공동기획)에서 전 분야 상위권을 기록하며 2년 연속 최고 평가를 받았습니다.',
         descriptionEn:
-          'BKL received top rankings across all fields in the 2025 Law Firm Consumer Report for the second consecutive year.',
+          'QUEST Legal received top rankings across all fields in the 2025 Law Firm Consumer Report for the second consecutive year.',
         category: 'Awards',
         date: '2025-05-12',
         imageUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop',
       },
       {
-        titleKo: '태평양, 17년 연속 ALB \'일하기 좋은 로펌\' 선정',
-        titleEn: 'BKL Selected as ALB Employer of Choice for 17th Consecutive Year',
+        titleKo: 'QUEST Legal, 17년 연속 ALB \'일하기 좋은 로펌\' 선정',
+        titleEn: 'QUEST Legal Selected as ALB Employer of Choice for 17th Consecutive Year',
         descriptionKo:
-          'BKL이 아시아·태평양 지역 법률 전문지 ALB(Asian Legal Business)가 선정한 \'올해의 일하기 좋은 로펌\'(Employer of Choice 2025)에 17년 연속 선정됐습니다.',
+          'QUEST Legal이 아시아·태평양 지역 법률 전문지 ALB(Asian Legal Business)가 선정한 \'올해의 일하기 좋은 로펌\'(Employer of Choice 2025)에 17년 연속 선정됐습니다.',
         descriptionEn:
-          'BKL has been selected as Employer of Choice 2025 by Asian Legal Business (ALB) for the 17th consecutive year.',
+          'QUEST Legal has been selected as Employer of Choice 2025 by Asian Legal Business (ALB) for the 17th consecutive year.',
         category: 'Awards',
         date: '2025-04-18',
         imageUrl: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=600&fit=crop',
       },
       {
         titleKo: '글로벌 로펌 \'A&O\'서 크리스 테일러 외국변호사 영입',
-        titleEn: 'BKL Recruits Chris Taylor from Global Firm A&O',
+        titleEn: 'QUEST Legal Recruits Chris Taylor from Global Firm A&O',
         descriptionKo:
-          '법무법인(유한) 태평양("BKL")은 영국 5대 로펌을 뜻하는 \'매직서클\' 중 하나인 글로벌 로펌 Allen & Overy의 크리스 테일러 외국변호사를 영입했습니다.',
+          'QUEST Legal은 영국 5대 로펌을 뜻하는 \'매직서클\' 중 하나인 글로벌 로펌 Allen & Overy의 크리스 테일러 외국변호사를 영입했습니다.',
         descriptionEn:
-          'BKL has recruited foreign attorney Chris Mainwaring-Taylor from Allen & Overy, one of the UK\'s Magic Circle law firms.',
+          'QUEST Legal has recruited foreign attorney Chris Mainwaring-Taylor from Allen & Overy, one of the UK\'s Magic Circle law firms.',
         category: 'Select Topics',
         date: '2025-01-02',
         imageUrl: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop',
       },
       {
-        titleKo: '태평양, 7년 연속 \'글로벌 200대 로펌\'',
-        titleEn: 'BKL Named to Global 200 for 7th Consecutive Year',
+        titleKo: 'QUEST Legal, 7년 연속 \'글로벌 200대 로펌\'',
+        titleEn: 'QUEST Legal Named to Global 200 for 7th Consecutive Year',
         descriptionKo:
-          '법무법인(유한) 태평양("BKL")이 아메리칸 로이어(The American Lawyer, ALM)가 선정하는 \'글로벌 200대 로펌\'에 7년 연속으로 이름을 올렸습니다.',
+          'QUEST Legal이 아메리칸 로이어(The American Lawyer, ALM)가 선정하는 \'글로벌 200대 로펌\'에 7년 연속으로 이름을 올렸습니다.',
         descriptionEn:
-          'BKL has been named to The American Lawyer\'s Global 200 list for the 7th consecutive year.',
+          'QUEST Legal has been named to The American Lawyer\'s Global 200 list for the 7th consecutive year.',
         category: '법인소식',
         date: '2024-09-20',
         imageUrl: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop',
@@ -182,9 +182,9 @@ export class MemStorage implements IStorage {
         titleKo: '미래금융전략센터 출범',
         titleEn: 'Launch of Future Finance Strategy Center',
         descriptionKo:
-          '법무법인(유한) 태평양("BKL")은 생성형 AI의 등장으로 금융권 디지털 혁신이 가속화하는 가운데 미래금융 분야의 전문성을 총집결하여 \'미래금융전략센터(Future Finance Strategy Center)\'를 출범했습니다.',
+          'QUEST Legal은 생성형 AI의 등장으로 금융권 디지털 혁신이 가속화하는 가운데 미래금융 분야의 전문성을 총집결하여 \'미래금융전략센터(Future Finance Strategy Center)\'를 출범했습니다.',
         descriptionEn:
-          'BKL has launched the Future Finance Strategy Center, consolidating expertise in future finance as digital innovation accelerates in the financial sector with the emergence of generative AI.',
+          'QUEST Legal has launched the Future Finance Strategy Center, consolidating expertise in future finance as digital innovation accelerates in the financial sector with the emergence of generative AI.',
         category: 'Select Topics',
         date: '2024-07-24',
         imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
@@ -193,7 +193,12 @@ export class MemStorage implements IStorage {
 
     newsItemsData.forEach((data) => {
       const id = randomUUID();
-      this.newsItems.set(id, { id, ...data });
+      this.newsItems.set(id, { 
+        id, 
+        ...data,
+        descriptionKo: data.descriptionKo ?? null,
+        descriptionEn: data.descriptionEn ?? null,
+      });
     });
 
     const newslettersData: InsertNewsletter[] = [
@@ -258,8 +263,8 @@ export class MemStorage implements IStorage {
         imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=600&fit=crop',
       },
       {
-        titleKo: '법무법인 태평양 - 최신 인사노무 동향 Vol.4',
-        titleEn: 'BKL - Latest Labor & Employment Trends Vol.4',
+        titleKo: 'QUEST Legal - 최신 인사노무 동향 Vol.4',
+        titleEn: 'QUEST Legal - Latest Labor & Employment Trends Vol.4',
         contentKo:
           '최신 인사노무 관련 판례와 규제 동향을 정리한 네 번째 보고서를 발간했습니다.',
         contentEn:
@@ -556,7 +561,11 @@ export class MemStorage implements IStorage {
 
     eventsData.forEach((data) => {
       const id = randomUUID();
-      this.events.set(id, { id, ...data });
+      this.events.set(id, { 
+        id, 
+        ...data,
+        registrationUrl: data.registrationUrl ?? null,
+      });
     });
   }
 
@@ -610,7 +619,13 @@ export class MemStorage implements IStorage {
   async createContact(data: InsertContact): Promise<Contact> {
     const id = randomUUID();
     const submittedAt = new Date().toISOString();
-    const contact: Contact = { id, ...data, submittedAt };
+    const contact: Contact = { 
+      id, 
+      ...data, 
+      phone: data.phone ?? null,
+      company: data.company ?? null,
+      submittedAt 
+    };
     this.contacts.set(id, contact);
     return contact;
   }

@@ -1,8 +1,8 @@
-# 법무법인 태평양 (BKL) Website Clone
+# QUEST Legal - Professional Law Firm Website
 
 ## Overview
 
-This is a professional law firm website clone built as a full-stack TypeScript application. The project replicates the design and functionality of 법무법인(유한) 태평양 (Bae, Kim & Lee LLC), Korea's largest law firm. It features a modern, bilingual (Korean/English) interface with practice areas, news, insights, and attorney profiles.
+This is a professional law firm website template built as a full-stack TypeScript application. QUEST Legal is a demonstration template featuring modern, bilingual (Korean/English) interface with practice areas, news, insights, and attorney profiles. This is a demo template for educational and demonstration purposes only.
 
 The application follows a client-server architecture with React on the frontend and Express on the backend, using Drizzle ORM for database operations. The design emphasizes professional aesthetics with clean layouts, high-quality imagery, and seamless language switching.
 

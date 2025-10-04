@@ -49,12 +49,12 @@ export function Footer() {
 
   const footerSections = {
     about: {
-      titleKo: '법무법인(유한) 태평양',
-      titleEn: 'Bae, Kim & Lee LLC',
+      titleKo: 'QUEST Legal',
+      titleEn: 'QUEST Legal',
       descriptionKo:
-        '1980년 설립된 대한민국 최대 규모의 종합 법률 서비스 기관으로, 550여명의 변호사와 9개의 해외 사무소를 통해 글로벌 법률 서비스를 제공합니다.',
+        '전문 법률 서비스를 제공하는 종합 로펌 템플릿입니다. 기업법무, 소송, 국제거래 등 다양한 법률 분야를 다루는 데모 사이트입니다.',
       descriptionEn:
-        'Founded in 1980, we are Korea\'s largest full-service law firm providing global legal services through 550+ attorneys and 9 international offices.',
+        'A professional law firm website template. This is a demonstration site showcasing legal services including corporate law, litigation, and international transactions.',
     },
     quickLinks: {
       titleKo: '바로가기',
@@ -76,7 +76,7 @@ export function Footer() {
           textEn: 'Centropolis, Gangnam, Seoul',
         },
         { icon: Phone, textKo: '+82-2-3404-0000', textEn: '+82-2-3404-0000' },
-        { icon: Mail, textKo: 'info@bkl.co.kr', textEn: 'info@bkl.co.kr' },
+        { icon: Mail, textKo: 'info@questlegal.co.kr', textEn: 'info@questlegal.co.kr' },
       ],
     },
     offices: {
@@ -229,12 +229,20 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t">
+          <div className="mb-6 p-4 bg-muted/50 rounded-md">
+            <p className="text-xs text-muted-foreground leading-relaxed" data-testid="text-disclaimer">
+              {language === 'ko' 
+                ? '본 사이트는 일반적인 법률 정보 제공 및 상담 예약을 위한 것으로, 개별 사안에 대한 법률 자문이 아닙니다. 구체적인 사건 판단과 대응은 변호사와의 직접 상담이 필요합니다. 본 사이트는 데모 템플릿이며 교육 및 시연 목적으로만 제공됩니다.'
+                : 'This website provides general legal information and consultation booking only. It does not constitute legal advice for individual cases. Specific case analysis and response require direct consultation with an attorney. This is a demonstration template provided for educational purposes only.'}
+            </p>
+          </div>
+
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p 
               className="text-sm text-muted-foreground"
               data-testid="text-copyright"
             >
-              © 2025 Bae, Kim & Lee LLC. All rights reserved.
+              © 2025 QUEST Legal. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a

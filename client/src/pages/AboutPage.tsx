@@ -67,15 +67,15 @@ export default function AboutPage() {
                 className="text-5xl md:text-6xl font-serif font-bold mb-4"
                 data-testid="text-about-hero-title"
               >
-                {language === 'ko' ? '회사 소개' : 'About BKL'}
+                {language === 'ko' ? '회사 소개' : 'About QUEST Legal'}
               </h1>
               <p 
                 className="text-xl"
                 data-testid="text-about-hero-subtitle"
               >
                 {language === 'ko'
-                  ? '법무법인(유한) 태평양 | Bae, Kim & Lee LLC'
-                  : 'Bae, Kim & Lee LLC'}
+                  ? 'QUEST Legal | 전문 법률 서비스'
+                  : 'QUEST Legal | Professional Legal Services'}
               </p>
             </div>
           </div>
@@ -94,18 +94,18 @@ export default function AboutPage() {
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p data-testid="text-firm-overview-p1">
                     {language === 'ko'
-                      ? '법무법인(유한) 태평양(BKL)은 1980년 설립된 대한민국 최대 규모의 종합 법률 서비스 기관입니다. 550여명의 변호사를 포함한 총 710여명의 전문가들이 함께하고 있으며, 국내 최초로 법무법인(유한)으로 조직을 변경하였습니다.'
-                      : 'Founded in 1980, Bae, Kim & Lee LLC (BKL) is Korea\'s largest full-service law firm. With over 550 attorneys and 710+ professionals, we were the first Korean law firm to adopt the limited liability partnership structure.'}
+                      ? 'QUEST Legal은 종합 법률 서비스를 제공하는 전문 로펌 템플릿입니다. 이 사이트는 데모 목적으로 제작되었으며, 다양한 법률 분야의 전문성을 보여주는 시연용 플랫폼입니다.'
+                      : 'QUEST Legal is a professional law firm website template providing comprehensive legal services. This site is created for demonstration purposes, showcasing expertise across various legal practice areas.'}
                   </p>
                   <p data-testid="text-firm-overview-p2">
                     {language === 'ko'
-                      ? '서울 강남 센트로폴리스에 본사를 두고 있으며, 베이징, 상하이, 홍콩, 하노이, 호치민, 두바이, 양곤, 자카르타, 싱가포르 등 9개의 해외 사무소를 운영하고 있습니다.'
-                      : 'Headquartered in Centropolis, Gangnam, Seoul, we operate 9 international offices in Beijing, Shanghai, Hong Kong, Hanoi, Ho Chi Minh, Dubai, Yangon, Jakarta, and Singapore.'}
+                      ? '기업법무, 소송, 국제거래, 지식재산권 등 다양한 분야를 다루며, 클라이언트에게 최적의 법률 솔루션을 제공하는 것을 목표로 합니다.'
+                      : 'We cover various areas including corporate law, litigation, international transactions, and intellectual property, aiming to provide optimal legal solutions to clients.'}
                   </p>
                   <p data-testid="text-firm-overview-p3">
                     {language === 'ko'
-                      ? '기업지배구조, 국제중재, M&A, 소송, 지식재산권 등 다양한 분야에서 최고 수준의 법률 서비스를 제공하고 있으며, 재단법인 동천을 통한 공익활동도 활발히 진행하고 있습니다.'
-                      : 'We provide top-tier legal services across various practice areas including corporate governance, international arbitration, M&A, litigation, and intellectual property. We also actively engage in pro bono work through the Dongchun Foundation.'}
+                      ? '본 웹사이트는 교육 및 시연 목적의 템플릿이며, 실제 법률 서비스를 제공하지 않습니다. 법률 자문이 필요한 경우 전문 변호사와 상담하시기 바랍니다.'
+                      : 'This website is a template for educational and demonstration purposes only and does not provide actual legal services. For legal advice, please consult with a professional attorney.'}
                   </p>
                 </div>
               </div>

@@ -42,7 +42,7 @@ export function Header() {
           <Link href="/" data-testid="link-home">
             <div className="flex items-center gap-3 hover-elevate active-elevate-2 px-4 py-2 rounded-md transition-colors cursor-pointer">
               <div className="text-2xl font-bold tracking-tight">
-                <span className="text-foreground">BKL</span>
+                <span className="text-foreground">QUEST</span>
               </div>
             </div>
           </Link>

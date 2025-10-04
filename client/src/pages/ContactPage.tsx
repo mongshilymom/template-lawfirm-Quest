@@ -97,7 +97,7 @@ export default function ContactPage() {
           ? '서울특별시 강남구 테헤란로 152 강남파이낸스센터 빌딩'
           : '152, Teheran-ro, Gangnam-gu, Seoul, Korea',
       phone: '+82-2-3404-0000',
-      email: 'info@bkl.co.kr',
+      email: 'info@questlegal.co.kr',
     },
     {
       nameKo: '부산 사무소',
@@ -107,7 +107,7 @@ export default function ContactPage() {
           ? '부산광역시 해운대구 센텀중앙로 97'
           : '97, Centum jungang-ro, Haeundae-gu, Busan, Korea',
       phone: '+82-51-742-0505',
-      email: 'busan@bkl.co.kr',
+      email: 'busan@questlegal.co.kr',
     },
   ];
 
@@ -298,6 +298,14 @@ export default function ContactPage() {
                         </FormItem>
                       )}
                     />
+
+                    <div className="mb-4 p-4 bg-muted/50 rounded-md">
+                      <p className="text-xs text-muted-foreground leading-relaxed" data-testid="text-privacy-notice">
+                        {language === 'ko' 
+                          ? '수집 항목: 이름, 이메일, 전화번호(선택), 회사명(선택), 제목, 문의내용 | 수집 목적: 상담 접수 및 답변 | 보관 기간: 12개월 | 제3자 제공 및 처리 위탁: 없음'
+                          : 'Collection: Name, Email, Phone (optional), Company (optional), Subject, Message | Purpose: Consultation processing and response | Retention: 12 months | Third-party provision/outsourcing: None'}
+                      </p>
+                    </div>
 
                     <Button
                       type="submit"

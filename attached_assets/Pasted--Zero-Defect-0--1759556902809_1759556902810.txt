@@ -1,0 +1,106 @@
+[목표] 현 코드베이스를 판매 가능한 템플릿 수준으로 마감한다. “Zero-Defect”는 결함 0 목표를 의미하며, 과장 문구는 사용하지 않는다.
+[제약] 법률자문 금지, 개인정보 최소수집/목적고지/보관기간 명시, 금지어(보장/무제한/영구무료/제로비용/유일/반드시/완벽/100%/1등/압도적) 0건, 외부 실명·실제 로고 사용 금지.
+[형식] 체크리스트 기반 커밋, CI 게이팅.
+[DoD] 하단 체크리스트 PASS.
+________________________________________
+A. 법무·브랜드 리스크 제로화 (가장 먼저)
+•	전역 브랜드 치환: **“QUEST Legal”**로 <title>, OG, 헤더/푸터, 파비콘, README.
+•	면책 고지(모든 페이지 푸터 + 폼 하단):
+•	본 사이트와 챗봇은 일반적 정보 제공·예약·문서수집을 위한 것으로,
+•	개별 사안에 대한 법률 자문이 아닙니다. 사건 판단과 대응은 변호사 상담이 필요합니다.
+•	개인정보 고지(폼 근처): 수집 항목(이름/이메일/문의내용), 목적(상담 접수), 보관기간(예: 12개월), 제3자 제공·처리위탁 여부(기본 없음) 명시.
+•	금지어 스캐너(CI 게이트):
+•	grep -R -nE "(보장|무제한|영구무료|제로비용|유일|반드시|완벽|100%|1등|압도적)" app components pages public || true
+•	# 위 명령의 결과가 비어있지 않으면 실패 처리
+________________________________________
+B. 전환 파이프라인(더블 옵트인 + 폴백)
+•	API: /app/api/consultation/route.ts
+o	입력: { name, email, message }(필수: name/email) — 최소수집.
+o	처리: DB에 status:'pending', token, expiresAt 저장 → RESEND_API_KEY 있으면 확인 메일 발송(링크: /confirm?token=).
+o	폴백: 키 없거나 실패해도 동일 성공 UI 반환({ ok:true }), 서버만 로깅.
+•	API: /app/api/confirm/route.ts
+o	토큰 검증→ status:'confirmed' 전환, 만료/중복 처리, 성공/실패 메시지 표준화.
+•	이벤트 로깅: 제출/확인/실패 로그 남김(서버 콘솔 + DB), GA4/gtag 최소 3종 이벤트(consult_submit, consult_confirm, click_call).
+예시 요지
+// /app/api/consultation/route.ts
+export async function POST(req: Request) {
+  const { name, email, message } = await req.json().catch(() => ({}));
+  if (!name || !email) return Response.json({ ok:false }, { status:400 });
+  const token = crypto.randomBytes(20).toString('hex');
+  // TODO: save {name,email,message,status:'pending',token,expiresAt}
+  if (process.env.RESEND_API_KEY) {
+    // TODO: send confirm email with /confirm?token=
+  }
+  return Response.json({ ok:true });
+}
+________________________________________
+C. SEO·성능 기본값
+•	app/robots.ts, app/sitemap.ts 구현(도메인: NEXT_PUBLIC_SITE_URL).
+•	홈에 JSON-LD LegalService 최소 스키마(이름/URL/전화/국가/도시).
+•	Core Web Vitals 목표: LCP ≤ 2.5s, INP < 200ms, CLS ≤ 0.1
+o	히어로/LCP 이미지는 <Image priority>, 리스트 썸네일엔 sizes 지정.
+o	웹폰트 font-display: swap, 프리로드는 LCP 폰트 1종만.
+o	이미지 lazy 기본, above-the-fold 1장만 eager.
+________________________________________
+D. 도메인 UX(리스트↔상세 무손실 왕복)
+•	필터/정렬 변경 시 URL 쿼리 동기화(브라우저 히스토리 반영).
+•	상세 진입 시 from 파라미터로 상태 보존 → 상세 하단 “목록으로” 클릭 시 동일 상태 복귀.
+•	한글 태그 슬러그: 표시용은 원문, URL은 슬러그. @sindresorhus/slugify 사용 권장.
+•	npm i @sindresorhus/slugify
+•	import slugify from '@sindresorhus/slugify';
+•	const makeSlug = (s:string) => slugify(s, { decamelize:false, customReplacements:[['·','-']] });
+________________________________________
+E. 접근성 마감
+•	모바일 메뉴 Focus Trap + Esc 닫기, 트리거에 aria-expanded 동기화.
+•	인터랙티브 요소 aria-label/aria-pressed/aria-current 적절 적용.
+•	키보드 포커스 스타일(명확한 outline) 전역 통일.
+포커스트랩 요지
+useEffect(() => {
+  if (!open) return;
+  const first = ref.current?.querySelector<HTMLElement>('[data-first]');
+  const last  = ref.current?.querySelector<HTMLElement>('[data-last]');
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') setOpen(false);
+    if (e.key !== 'Tab') return;
+    const a = document.activeElement;
+    if (e.shiftKey && a === first) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && a === last) { e.preventDefault(); first?.focus(); }
+  };
+  document.addEventListener('keydown', onKey);
+  return () => document.removeEventListener('keydown', onKey);
+}, [open]);
+________________________________________
+F. CI/CD: “빨간불이면 배포 불가”
+•	GitHub Actions 워크플로 .github/workflows/ci.yml
+o	npm ci → build → lint → type-check → playwright install --with-deps → test → 금지어 스캐너
+o	금지어 스캐너 결과가 비어있지 않으면 job 실패.
+name: CI
+on: [push, pull_request]
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run type-check || true
+      - run: npx playwright install --with-deps
+      - run: npx playwright test
+      - name: Banned words scan
+        run: |
+          set -e
+          OUT=$(grep -R -nE "(보장|무제한|영구무료|제로비용|유일|반드시|완벽|100%|1등|압도적)" app components pages public || true)
+          if [ ! -z "$OUT" ]; then
+            echo "$OUT"; exit 1; fi
+________________________________________
+G. 설정·운영
+•	.env (샘플)
+•	NEXT_PUBLIC_SITE_URL=https://quantum-legal.example
+•	NEXT_PUBLIC_DEMO_MODE=true
+•	RESEND_API_KEY=
+•	CHANGELOG 작성(변경/사유/영향/릴리즈노트), 버전 태깅(e.g., v1.0.0).
+•	플레이스홀더 이미지/이름만 사용(실인물·실로고 금지).
+
