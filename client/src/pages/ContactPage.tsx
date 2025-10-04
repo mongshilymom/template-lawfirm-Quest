@@ -392,6 +392,23 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+
+        <section className="py-12 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <Card className="border-primary/20">
+              <CardContent className="p-8">
+                <h3 className="text-lg font-semibold text-foreground mb-4">
+                  {language === 'ko' ? '법적 고지' : 'Legal Notice'}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {language === 'ko'
+                    ? '본 웹사이트는 교육 및 시연 목적의 템플릿입니다. QUEST Legal은 데모 브랜드이며, 본 사이트는 실제 법률 서비스를 제공하지 않습니다. 문의 양식을 통해 제출된 정보는 시연 목적으로만 사용되며, 실제 법률 자문이나 상담으로 간주되지 않습니다. 실제 법률 자문이 필요한 경우 자격을 갖춘 법률 전문가와 상담하시기 바랍니다.'
+                    : 'This website is a demonstration template for educational purposes only. QUEST Legal is a demo brand, and this site does not provide actual legal services. Information submitted through contact forms is used for demonstration purposes only and does not constitute legal advice or consultation. For actual legal counsel, please consult with qualified legal professionals.'}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
       </div>
 
       <Footer />
