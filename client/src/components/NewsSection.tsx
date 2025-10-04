@@ -113,6 +113,7 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
                     <img
                       src={news.imageUrl}
                       alt={language === 'ko' ? news.titleKo : news.titleEn}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -147,6 +148,7 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
                 <img
                   src={news.imageUrl}
                   alt={language === 'ko' ? news.titleKo : news.titleEn}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>

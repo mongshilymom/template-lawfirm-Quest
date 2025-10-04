@@ -4,6 +4,75 @@ import { storage } from "./storage";
 import { insertSubscriptionSchema, insertContactSchema, insertConsultationSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  app.get("/api/robots.txt", (_req, res) => {
+    res.type("text/plain");
+    res.send(`User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: ${_req.protocol}://${_req.get('host')}/api/sitemap.xml`);
+  });
+
+  app.get("/api/sitemap.xml", async (_req, res) => {
+    try {
+      const baseUrl = `${_req.protocol}://${_req.get('host')}`;
+      const practiceAreas = await storage.getPracticeAreas();
+      const newsItems = await storage.getNewsItems();
+      const events = await storage.getEvents();
+      const attorneys = await storage.getAttorneys();
+      
+      const staticPages = [
+        { url: '/', priority: '1.0', changefreq: 'daily' },
+        { url: '/about', priority: '0.8', changefreq: 'monthly' },
+        { url: '/practice-areas', priority: '0.9', changefreq: 'weekly' },
+        { url: '/news', priority: '0.8', changefreq: 'daily' },
+        { url: '/events', priority: '0.7', changefreq: 'weekly' },
+        { url: '/attorneys', priority: '0.7', changefreq: 'weekly' },
+        { url: '/contact', priority: '0.6', changefreq: 'monthly' },
+      ];
+
+      const dynamicPages = [
+        ...practiceAreas.map(pa => ({
+          url: `/practice-areas/${pa.id}`,
+          priority: '0.7',
+          changefreq: 'monthly' as const
+        })),
+        ...newsItems.map(news => ({
+          url: `/news/${news.id}`,
+          priority: '0.6',
+          changefreq: 'monthly' as const
+        })),
+        ...events.map(event => ({
+          url: `/events/${event.id}`,
+          priority: '0.5',
+          changefreq: 'monthly' as const
+        })),
+        ...attorneys.map(attorney => ({
+          url: `/attorneys/${attorney.id}`,
+          priority: '0.5',
+          changefreq: 'monthly' as const
+        })),
+      ];
+
+      const allPages = [...staticPages, ...dynamicPages];
+
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages.map(page => `  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+      res.type("application/xml");
+      res.send(sitemap);
+    } catch (error) {
+      console.error('[SITEMAP] Error generating sitemap:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Failed to generate sitemap</error>');
+    }
+  });
+
   app.get("/api/practice-areas", async (_req, res) => {
     try {
       const practiceAreas = await storage.getPracticeAreas();
