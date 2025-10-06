@@ -120,7 +120,6 @@ Preferred communication style: Simple, everyday language.
 - Vite for frontend bundling and dev server
 - esbuild for backend bundling
 - TSX for TypeScript execution in development
-- Replit-specific plugins for development experience
 
 **Styling & Utilities**
 - Tailwind CSS with PostCSS for processing
