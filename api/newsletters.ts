@@ -2,7 +2,21 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default function handler(_req: VercelRequest, res: VercelResponse) {
   res.status(200).json([
-    { id: 201, titleKo: '공정거래 동향 9월호', titleEn: 'Antitrust Update – Sep', summaryKo: '가이드라인 개정 핵심 정리', summaryEn: 'Key guideline updates', date: '2025-09-30', fileUrl: '#' },
-    { id: 202, titleKo: '국제거래 규제 브리프', titleEn: 'Intl Trade Brief',       summaryKo: '수출통제 및 제재 동향',     summaryEn: 'Export control trends',  date: '2025-09-10', fileUrl: '#' }
+    {
+      id: 1,
+      titleKo: '공정거래 이슈 브리핑',
+      titleEn: 'Antitrust Briefing',
+      excerptKo: '대규모유통업법 개정 포인트 요약.',
+      excerptEn: 'Key points from recent antitrust amendments.',
+      link: '#'
+    },
+    {
+      id: 2,
+      titleKo: '세무/조세 인사이트',
+      titleEn: 'Tax Insights',
+      excerptKo: '해외원천소득 과세 이슈 점검.',
+      excerptEn: 'Overview of cross-border withholding matters.',
+      link: '#'
+    }
   ]);
 }

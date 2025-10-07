@@ -41,15 +41,15 @@ export default function HomePage() {
     };
   }, []);
   const { data: practiceAreas = [], isLoading: isLoadingPractices } = useQuery<PracticeArea[]>({
-    queryKey: ['/api/practice-areas'],
+    queryKey: ['/practice-areas'],
   });
 
   const { data: newsItems = [], isLoading: isLoadingNews } = useQuery<NewsItem[]>({
-    queryKey: ['/api/news'],
+    queryKey: ['/news'],
   });
 
   const { data: newsletters = [], isLoading: isLoadingNewsletters } = useQuery<Newsletter[]>({
-    queryKey: ['/api/newsletters'],
+    queryKey: ['/newsletters'],
   });
 
   if (isLoadingPractices || isLoadingNews || isLoadingNewsletters) {

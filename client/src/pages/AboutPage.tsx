@@ -10,11 +10,11 @@ export default function AboutPage() {
   const { language } = useLanguage();
 
   const { data: offices = [] } = useQuery<Office[]>({
-    queryKey: ['/api/offices'],
+    queryKey: ['/offices'],
   });
 
   const { data: attorneys = [] } = useQuery<Attorney[]>({
-    queryKey: ['/api/attorneys'],
+    queryKey: ['/attorneys'],
   });
 
   const stats = [

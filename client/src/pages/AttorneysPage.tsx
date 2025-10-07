@@ -24,15 +24,15 @@ export default function AttorneysPage() {
   const [selectedOffice, setSelectedOffice] = useState<string>(params.get('office') || 'all');
 
   const { data: attorneys = [], isLoading: isLoadingAttorneys } = useQuery<Attorney[]>({
-    queryKey: ['/api/attorneys'],
+    queryKey: ['/attorneys'],
   });
 
   const { data: practiceAreas = [] } = useQuery<PracticeArea[]>({
-    queryKey: ['/api/practice-areas'],
+    queryKey: ['/practice-areas'],
   });
 
   const { data: offices = [] } = useQuery<Office[]>({
-    queryKey: ['/api/offices'],
+    queryKey: ['/offices'],
   });
 
   const filteredAttorneys = attorneys.filter((attorney) => {

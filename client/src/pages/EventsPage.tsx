@@ -19,7 +19,7 @@ export default function EventsPage() {
   const [selectedType, setSelectedType] = useState<string>(params.get('type') || 'all');
 
   const { data: events = [], isLoading } = useQuery<Event[]>({
-    queryKey: ['/api/events'],
+    queryKey: ['/events'],
   });
 
   const eventTypes = [

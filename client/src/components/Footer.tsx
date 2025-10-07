@@ -27,7 +27,7 @@ export function Footer() {
 
     setIsSubmitting(true);
     try {
-      await apiRequest('POST', '/api/subscriptions', { email });
+      await apiRequest('POST', '/subscriptions', { email });
 
       toast({
         title: language === 'ko' ? '구독 완료' : 'Subscription Successful',
