@@ -1,4 +1,5 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { api } from "./api";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
@@ -12,12 +13,9 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
-    method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
+  const res = method === 'GET' 
+    ? await api.get(url)
+    : await api.post(url, data);
 
   await throwIfResNotOk(res);
   return res;
@@ -29,9 +27,9 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
-      credentials: "include",
-    });
+    // queryKey의 첫 번째 요소를 API 경로로 사용
+    const path = queryKey[0] as string;
+    const res = await api.get(path);
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {
       return null;

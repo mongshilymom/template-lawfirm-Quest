@@ -21,6 +21,7 @@ import { useToast } from '@/hooks/use-toast';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { apiRequest } from '@/lib/queryClient';
+import { api } from '@/lib/api';
 import { insertContactSchema } from '@shared/schema';
 
 export default function ContactPage() {
@@ -50,11 +51,7 @@ export default function ContactPage() {
 
   const mutation = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      const response = await api.post('/contacts', data);
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.error || 'Failed to submit contact form');
