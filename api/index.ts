@@ -1,13 +1,25 @@
-import express from "express";
-import cors from "cors";
-import { registerRoutes } from "../server/routes";
+// api/index.ts
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import express from 'express';
+import cors from 'cors';
+import { registerRoutes } from '../server/routes';
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+let app: ReturnType<typeof express> | null = null;
 
-// 라우트 등록
-registerRoutes(app);
+async function getApp() {
+  if (!app) {
+    app = express();
+    app.use(cors());
+    app.use(express.json());
+    // registerRoutes는 라우트를 app에 붙인 뒤 httpServer를 반환하지만,
+    // 서버리스에선 app만 쓰면 됩니다.
+    await registerRoutes(app);
+  }
+  return app;
+}
 
-// Vercel 서버리스 핸들러
-export default app;
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const app = await getApp();
+  // @ts-ignore - Express는 (req,res) 호출 시 핸들러로 동작
+  return app(req, res);
+}
