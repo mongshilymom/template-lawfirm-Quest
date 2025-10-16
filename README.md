@@ -1,6 +1,6 @@
-# QUEST Legal - Law Firm Template
+# QUEST Legal - ZENTA LawFirm WebSite
 
-프리미엄 로펌 웹사이트 템플릿
+프로페셔널 로펌 웹사이트 솔루션 - AI-First Legal Site, Ready to Launch
 
 ## 🚀 로컬 개발 환경 실행
 
@@ -60,8 +60,8 @@ npm run build
 GitHub에 푸시하면 Vercel이 자동으로 배포합니다.
 
 ### 배포 확인
-- **메인 사이트:** https://template-lawfirm-quest.vercel.app/
-- **API 테스트:** https://template-lawfirm-quest.vercel.app/api/practice-areas
+- **메인 사이트:** https://youalta.site/
+- **API 테스트:** https://youalta.site/api/practice-areas
 
 ---
 
@@ -80,7 +80,7 @@ GitHub에 푸시하면 Vercel이 자동으로 배포합니다.
 ## 📁 프로젝트 구조
 
 ```
-template-lawfirm-Quest/
+QUEST-Legal-Website/
 ├── client/              # 프론트엔드 (React + Vite)
 │   ├── src/
 │   │   ├── components/  # UI 컴포넌트

@@ -23,12 +23,12 @@ export default function EventsPage() {
   });
 
   const eventTypes = [
-    { value: 'all', labelKo: '전체', labelEn: 'All' },
-    { value: 'Seminar', labelKo: '세미나', labelEn: 'Seminar' },
-    { value: 'Workshop', labelKo: '워크숍', labelEn: 'Workshop' },
-    { value: 'Conference', labelKo: '컨퍼런스', labelEn: 'Conference' },
-    { value: 'Webinar', labelKo: '웨비나', labelEn: 'Webinar' },
-    { value: 'Program', labelKo: '프로그램', labelEn: 'Program' },
+    { value: 'all', labelKo: '?�체', labelEn: 'All' },
+    { value: 'Seminar', labelKo: '?��???, labelEn: 'Seminar' },
+    { value: 'Workshop', labelKo: '?�크??, labelEn: 'Workshop' },
+    { value: 'Conference', labelKo: '컨퍼?�스', labelEn: 'Conference' },
+    { value: 'Webinar', labelKo: '?�비??, labelEn: 'Webinar' },
+    { value: 'Program', labelKo: '?�로그램', labelEn: 'Program' },
   ];
 
   const filteredEvents =
@@ -87,14 +87,14 @@ export default function EventsPage() {
                 className="text-5xl md:text-6xl font-serif font-bold mb-4"
                 data-testid="text-events-hero-title"
               >
-                {language === 'ko' ? '세미나 및 이벤트' : 'Seminars & Events'}
+                {language === 'ko' ? '?��???�??�벤?? : 'Seminars & Events'}
               </h1>
               <p
                 className="text-xl"
                 data-testid="text-events-hero-subtitle"
               >
                 {language === 'ko'
-                  ? '최신 법률 동향과 실무 지식을 공유합니다'
+                  ? '최신 법률 ?�향�??�무 지?�을 공유?�니??
                   : 'Sharing Latest Legal Trends and Practical Knowledge'}
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function EventsPage() {
             {isLoading ? (
               <div className="text-center py-12">
                 <p className="text-muted-foreground">
-                  {language === 'ko' ? '로딩 중...' : 'Loading...'}
+                  {language === 'ko' ? '로딩 �?..' : 'Loading...'}
                 </p>
               </div>
             ) : (
@@ -133,7 +133,7 @@ export default function EventsPage() {
                       className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                       data-testid="text-upcoming-events-title"
                     >
-                      {language === 'ko' ? '예정된 이벤트' : 'Upcoming Events'}
+                      {language === 'ko' ? '?�정???�벤?? : 'Upcoming Events'}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {upcomingEvents.map((event) => (
@@ -195,7 +195,7 @@ export default function EventsPage() {
                                 data-testid={`button-register-${event.id}`}
                               >
                                 <span>
-                                  {language === 'ko' ? '등록하기' : 'Register'}
+                                  {language === 'ko' ? '?�록?�기' : 'Register'}
                                 </span>
                                 <ExternalLink className="w-4 h-4 ml-2" />
                               </Button>
@@ -213,7 +213,7 @@ export default function EventsPage() {
                       className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                       data-testid="text-past-events-title"
                     >
-                      {language === 'ko' ? '지난 이벤트' : 'Past Events'}
+                      {language === 'ko' ? '지???�벤?? : 'Past Events'}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {pastEvents.map((event) => (
@@ -247,7 +247,7 @@ export default function EventsPage() {
                   <div className="text-center py-12">
                     <p className="text-muted-foreground">
                       {language === 'ko'
-                        ? '해당하는 이벤트가 없습니다.'
+                        ? '?�당?�는 ?�벤?��? ?�습?�다.'
                         : 'No events found.'}
                     </p>
                   </div>

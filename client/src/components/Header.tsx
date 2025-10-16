@@ -111,11 +111,11 @@ export function Header() {
               size="icon"
               onClick={toggleLanguage}
               data-testid="button-language-toggle"
-              aria-label={`Switch to ${language === 'ko' ? 'English' : '한국어'}`}
+              aria-label={`Switch to ${language === 'ko' ? 'English' : '?�국??}`}
               className="rounded-md"
             >
               <Globe className="w-5 h-5" />
-              <span className="sr-only">{`Switch to ${language === 'ko' ? 'English' : '한국어'}`}</span>
+              <span className="sr-only">{`Switch to ${language === 'ko' ? 'English' : '?�국??}`}</span>
             </Button>
 
             <Button

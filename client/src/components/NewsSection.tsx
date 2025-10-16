@@ -15,10 +15,10 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
   const { language } = useLanguage();
 
   const categories = [
-    { value: 'all', labelKo: '전체', labelEn: 'All' },
+    { value: 'all', labelKo: '?�체', labelEn: 'All' },
     { value: 'Select Topics', labelKo: 'Select Topics', labelEn: 'Select Topics' },
     { value: 'Awards', labelKo: 'Awards', labelEn: 'Awards' },
-    { value: '법인소식', labelKo: '법인소식', labelEn: 'Firm News' },
+    { value: '법인?�식', labelKo: '법인?�식', labelEn: 'Firm News' },
   ];
 
   const filteredNews =
@@ -94,7 +94,7 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
                       className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all mt-4 p-0 h-auto"
                       data-testid={`button-read-more-${featuredNews.id}`}
                     >
-                      <span>{language === 'ko' ? '자세히 보기' : 'Read More'}</span>
+                      <span>{language === 'ko' ? '?�세??보기' : 'Read More'}</span>
                       <ArrowRight className="w-4 h-4" />
                     </Button>
                   </CardContent>

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# SEO-friendly sitemap
+Sitemap: https://template-lawfirm.vercel.app/sitemap.xml
+
+# 블록할 경로 (관리자, 계산기 등)
+Disallow: /admin
+Disallow: /api/
+Disallow: /calculator/*/results
+Disallow: /_next/
+Disallow: /images/lawyers/
+
+# 크롤링 주기
+Crawl-delay: 1

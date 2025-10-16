@@ -18,8 +18,8 @@ export function Footer() {
     
     if (!email || !email.includes('@')) {
       toast({
-        title: language === 'ko' ? '오류' : 'Error',
-        description: language === 'ko' ? '유효한 이메일을 입력해주세요.' : 'Please enter a valid email address.',
+        title: language === 'ko' ? '?�류' : 'Error',
+        description: language === 'ko' ? '?�효???�메?�을 ?�력?�주?�요.' : 'Please enter a valid email address.',
         variant: 'destructive',
       });
       return;
@@ -30,16 +30,16 @@ export function Footer() {
       await apiRequest('POST', '/subscriptions', { email });
 
       toast({
-        title: language === 'ko' ? '구독 완료' : 'Subscription Successful',
+        title: language === 'ko' ? '구독 ?�료' : 'Subscription Successful',
         description: language === 'ko' 
-          ? '뉴스레터 구독이 완료되었습니다.'
+          ? '?�스?�터 구독???�료?�었?�니??'
           : 'You have successfully subscribed to our newsletter.',
       });
       setEmail('');
     } catch (error: any) {
       toast({
-        title: language === 'ko' ? '오류' : 'Error',
-        description: error.message || (language === 'ko' ? '구독 중 오류가 발생했습니다.' : 'An error occurred during subscription.'),
+        title: language === 'ko' ? '?�류' : 'Error',
+        description: error.message || (language === 'ko' ? '구독 �??�류가 발생?�습?�다.' : 'An error occurred during subscription.'),
         variant: 'destructive',
       });
     } finally {
@@ -52,18 +52,18 @@ export function Footer() {
       titleKo: 'QUEST Legal',
       titleEn: 'QUEST Legal',
       descriptionKo:
-        '전문 법률 서비스를 제공하는 종합 로펌 템플릿입니다. 기업법무, 소송, 국제거래 등 다양한 법률 분야를 다루는 데모 사이트입니다.',
+        '?�문 법률 ?�비?��? ?�공?�는 종합 로펌 ?�사?�트?�니?? 기업법무, ?�송, �?��거래 ???�양??법률 분야�??�문?�로 ?�니??',
       descriptionEn:
-        'A professional law firm website template. This is a demonstration site showcasing legal services including corporate law, litigation, and international transactions.',
+        'A professional law firm website providing comprehensive legal services including corporate law, litigation, and international transactions.',
     },
     quickLinks: {
-      titleKo: '바로가기',
+      titleKo: '바로가�?,
       titleEn: 'Quick Links',
       links: [
-        { labelKo: '업무 분야', labelEn: 'Practices', href: '#practices' },
-        { labelKo: '뉴스', labelEn: 'News', href: '#news' },
-        { labelKo: '인사이트', labelEn: 'Insights', href: '#insights' },
-        { labelKo: '회사 소개', labelEn: 'About', href: '/about' },
+        { labelKo: '?�무 분야', labelEn: 'Practices', href: '#practices' },
+        { labelKo: '?�스', labelEn: 'News', href: '#news' },
+        { labelKo: '?�사?�트', labelEn: 'Insights', href: '#insights' },
+        { labelKo: '?�사 ?�개', labelEn: 'About', href: '/about' },
       ],
     },
     contact: {
@@ -72,7 +72,7 @@ export function Footer() {
       items: [
         {
           icon: MapPin,
-          textKo: '서울 강남구 센트로폴리스',
+          textKo: '?�울 강남�??�트로폴리스',
           textEn: 'Centropolis, Gangnam, Seoul',
         },
         { icon: Phone, textKo: '+82-2-3404-0000', textEn: '+82-2-3404-0000' },
@@ -80,15 +80,15 @@ export function Footer() {
       ],
     },
     offices: {
-      titleKo: '글로벌 오피스',
+      titleKo: '글로벌 ?�피??,
       titleEn: 'Global Offices',
       locations: [
-        { nameKo: '베이징', nameEn: 'Beijing' },
-        { nameKo: '상하이', nameEn: 'Shanghai' },
-        { nameKo: '홍콩', nameEn: 'Hong Kong' },
-        { nameKo: '하노이', nameEn: 'Hanoi' },
-        { nameKo: '호치민', nameEn: 'Ho Chi Minh' },
-        { nameKo: '두바이', nameEn: 'Dubai' },
+        { nameKo: '베이�?, nameEn: 'Beijing' },
+        { nameKo: '?�하??, nameEn: 'Shanghai' },
+        { nameKo: '?�콩', nameEn: 'Hong Kong' },
+        { nameKo: '?�노??, nameEn: 'Hanoi' },
+        { nameKo: '?�치�?, nameEn: 'Ho Chi Minh' },
+        { nameKo: '?�바??, nameEn: 'Dubai' },
       ],
     },
   };
@@ -102,20 +102,20 @@ export function Footer() {
               className="text-2xl font-serif font-semibold text-foreground mb-4"
               data-testid="text-newsletter-title"
             >
-              {language === 'ko' ? '뉴스레터 구독' : 'Subscribe to Newsletter'}
+              {language === 'ko' ? '?�스?�터 구독' : 'Subscribe to Newsletter'}
             </h3>
             <p 
               className="text-muted-foreground mb-6"
               data-testid="text-newsletter-description"
             >
               {language === 'ko'
-                ? '최신 법률 동향과 인사이트를 이메일로 받아보세요.'
+                ? '최신 법률 ?�향�??�사?�트�??�메?�로 받아보세??'
                 : 'Receive the latest legal trends and insights via email.'}
             </p>
             <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto">
               <Input
                 type="email"
-                placeholder={language === 'ko' ? '이메일 주소' : 'Email address'}
+                placeholder={language === 'ko' ? '?�메??주소' : 'Email address'}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 data-testid="input-newsletter-email"
@@ -128,8 +128,8 @@ export function Footer() {
                 data-testid="button-subscribe-newsletter"
               >
                 {isSubmitting 
-                  ? (language === 'ko' ? '처리중...' : 'Submitting...') 
-                  : (language === 'ko' ? '구독하기' : 'Subscribe')}
+                  ? (language === 'ko' ? '처리�?..' : 'Submitting...') 
+                  : (language === 'ko' ? '구독?�기' : 'Subscribe')}
               </Button>
             </form>
           </div>
@@ -232,8 +232,8 @@ export function Footer() {
           <div className="mb-6 p-4 bg-muted/50 rounded-md">
             <p className="text-xs text-muted-foreground leading-relaxed" data-testid="text-disclaimer">
               {language === 'ko' 
-                ? '본 사이트는 일반적인 법률 정보 제공 및 상담 예약을 위한 것으로, 개별 사안에 대한 법률 자문이 아닙니다. 구체적인 사건 판단과 대응은 변호사와의 직접 상담이 필요합니다. 본 사이트는 데모 템플릿이며 교육 및 시연 목적으로만 제공됩니다.'
-                : 'This website provides general legal information and consultation booking only. It does not constitute legal advice for individual cases. Specific case analysis and response require direct consultation with an attorney. This is a demonstration template provided for educational purposes only.'}
+                ? '�??�이?�는 ZENTA LawFirm WebSite ?�루?�으�??�작?�었?�니?? ?�반?�인 법률 ?�보 ?�공???�한 것으�? 개별 ?�안???�??법률 ?�문???�닙?�다. 구체?�인 법률 ?�담?� 변?�사?� 직접 ?�담?�시�?바랍?�다.'
+                : 'This website is built with ZENTA LawFirm WebSite solution. It provides general legal information only and does not constitute legal advice for individual cases. For specific legal consultation, please contact an attorney directly.'}
             </p>
           </div>
 
@@ -250,14 +250,14 @@ export function Footer() {
                 data-testid="link-privacy-policy"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                {language === 'ko' ? '개인정보처리방침' : 'Privacy Policy'}
+                {language === 'ko' ? '개인?�보처리방침' : 'Privacy Policy'}
               </a>
               <a
                 href="#"
                 data-testid="link-terms-of-service"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                {language === 'ko' ? '이용약관' : 'Terms of Service'}
+                {language === 'ko' ? '?�용?��?' : 'Terms of Service'}
               </a>
             </div>
           </div>

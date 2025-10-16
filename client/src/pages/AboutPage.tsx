@@ -10,7 +10,7 @@ function pad2(n: number) {
   return String(n).padStart(2, '0');
 }
 
-// index(0~7) → /images/attorneys/attorney-0X.png
+// index(0~7) ??/images/attorneys/attorney-0X.png
 function getLocalHeadshotPath(index: number) {
   return `/images/attorneys/attorney-${pad2(index + 1)}.png`;
 }
@@ -31,28 +31,28 @@ export default function AboutPage() {
       icon: Users,
       valueKo: '550+',
       valueEn: '550+',
-      labelKo: '전문 변호사',
+      labelKo: '?�문 변?�사',
       labelEn: 'Professional Attorneys',
     },
     {
       icon: Building2,
       valueKo: '9',
       valueEn: '9',
-      labelKo: '해외 사무소',
+      labelKo: '?�외 ?�무??,
       labelEn: 'Global Offices',
     },
     {
       icon: Globe,
       valueKo: '40+',
       valueEn: '40+',
-      labelKo: '년 경력',
+      labelKo: '??경력',
       labelEn: 'Years of Excellence',
     },
     {
       icon: Award,
-      valueKo: '1위',
+      valueKo: '1??,
       valueEn: '#1',
-      labelKo: '국내 최대 로펌',
+      labelKo: '�?�� 최�? 로펌',
       labelEn: 'Law Firm in Korea',
     },
   ];
@@ -76,11 +76,11 @@ export default function AboutPage() {
                 className="text-5xl md:text-6xl font-serif font-bold mb-4"
                 data-testid="text-about-hero-title"
               >
-                {language === 'ko' ? '회사 소개' : 'About QUEST Legal'}
+                {language === 'ko' ? '?�사 ?�개' : 'About QUEST Legal'}
               </h1>
               <p className="text-xl" data-testid="text-about-hero-subtitle">
                 {language === 'ko'
-                  ? 'QUEST Legal | 전문 법률 서비스'
+                  ? 'QUEST Legal | ?�문 법률 ?�비??
                   : 'QUEST Legal | Professional Legal Services'}
               </p>
             </div>
@@ -100,18 +100,18 @@ export default function AboutPage() {
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p data-testid="text-firm-overview-p1">
                     {language === 'ko'
-                      ? 'QUEST Legal은 종합 법률 서비스를 제공하는 전문 로펌 템플릿입니다. 이 사이트는 데모 목적으로 제작되었으며, 다양한 법률 분야의 전문성을 보여주는 시연용 플랫폼입니다.'
-                      : 'QUEST Legal is a professional law firm website template providing comprehensive legal services. This site is created for demonstration purposes, showcasing expertise across various legal practice areas.'}
+                      ? 'QUEST Legal?� 종합 법률 ?�비?��? ?�공?�는 ?�문 로펌 ?�사?�트?�니?? ?�양??법률 분야???�문?�을 갖춘 변?�사?�이 고객??법률 문제 ?�결???�해 최선???�합?�다.'
+                      : 'QUEST Legal is a professional law firm website providing comprehensive legal services. Our attorneys with expertise across various legal practice areas are dedicated to resolving clients\' legal issues.'}
                   </p>
                   <p data-testid="text-firm-overview-p2">
                     {language === 'ko'
-                      ? '기업법무, 소송, 국제거래, 지식재산권 등 다양한 분야를 다루며, 클라이언트에게 최적의 법률 솔루션을 제공하는 것을 목표로 합니다.'
+                      ? '기업법무, ?�송, �?��거래, 지?�재?�권 ???�양??분야�??�루�? ?�라?�언?�에�?최적??법률 ?�루?�을 ?�공?�는 것을 목표�??�니??'
                       : 'We cover various areas including corporate law, litigation, international transactions, and intellectual property, aiming to provide optimal legal solutions to clients.'}
                   </p>
                   <p data-testid="text-firm-overview-p3">
                     {language === 'ko'
-                      ? '본 웹사이트는 교육 및 시연 목적의 템플릿이며, 실제 법률 서비스를 제공하지 않습니다. 법률 자문이 필요한 경우 전문 변호사와 상담하시기 바랍니다.'
-                      : 'This website is a template for educational and demonstration purposes only and does not provide actual legal services. For legal advice, please consult with a professional attorney.'}
+                      ? '�??�사?�트??ZENTA LawFirm WebSite ?�루?�으�??�작?�었?�니?? ?�제 법률 ?�비?��? ?�요??경우 ?�문 변?�사?� 직접 ?�담?�시�?바랍?�다.'
+                      : 'This website is built with ZENTA LawFirm WebSite solution. For actual legal services, please consult directly with a professional attorney.'}
                   </p>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function AboutPage() {
                 className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                 data-testid="text-global-offices-title"
               >
-                {language === 'ko' ? '글로벌 오피스' : 'Global Offices'}
+                {language === 'ko' ? '글로벌 ?�피?? : 'Global Offices'}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {offices.map((office) => (
@@ -192,10 +192,10 @@ export default function AboutPage() {
                 className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                 data-testid="text-key-attorneys-title"
               >
-                {language === 'ko' ? '주요 구성원' : 'Key Attorneys'}
+                {language === 'ko' ? '주요 구성?? : 'Key Attorneys'}
               </h2>
 
-              {/* A안: 정적 경로 직접 사용 */}
+              {/* A?? ?�적 경로 직접 ?�용 */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {attorneys.slice(0, 8).map((attorney, index) => {
                   const localSrc = getLocalHeadshotPath(index);
@@ -216,7 +216,7 @@ export default function AboutPage() {
                           decoding="async"
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           onError={(e) => {
-                            // 만약 로컬 파일이 없으면, 기존 API 이미지로 폴백
+                            // 만약 로컬 ?�일???�으�? 기존 API ?��?지�??�백
                             const target = e.currentTarget as HTMLImageElement;
                             if (attorney.imageUrl && target.src !== attorney.imageUrl) {
                               target.src = attorney.imageUrl;

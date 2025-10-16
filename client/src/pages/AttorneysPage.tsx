@@ -132,14 +132,14 @@ export default function AttorneysPage() {
                 className="text-5xl md:text-6xl font-serif font-bold mb-4"
                 data-testid="text-attorneys-hero-title"
               >
-                {language === 'ko' ? '변호사 검색' : 'Find an Attorney'}
+                {language === 'ko' ? '변?�사 검?? : 'Find an Attorney'}
               </h1>
               <p
                 className="text-xl"
                 data-testid="text-attorneys-hero-subtitle"
               >
                 {language === 'ko'
-                  ? '550여명의 전문 변호사와 함께합니다'
+                  ? '550?�명???�문 변?�사?� ?�께?�니??
                   : '550+ Professional Attorneys'}
               </p>
             </div>
@@ -155,7 +155,7 @@ export default function AttorneysPage() {
                   type="text"
                   placeholder={
                     language === 'ko'
-                      ? '변호사 이름 또는 업무분야로 검색...'
+                      ? '변?�사 ?�름 ?�는 ?�무분야�?검??..'
                       : 'Search by name or practice area...'
                   }
                   value={searchQuery}
@@ -168,7 +168,7 @@ export default function AttorneysPage() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-sm font-semibold text-foreground mb-3">
-                    {language === 'ko' ? '업무분야' : 'Practice Area'}
+                    {language === 'ko' ? '?�무분야' : 'Practice Area'}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     <Badge
@@ -177,7 +177,7 @@ export default function AttorneysPage() {
                       onClick={() => setSelectedPracticeArea('all')}
                       data-testid="button-filter-practice-all"
                     >
-                      {language === 'ko' ? '전체' : 'All'}
+                      {language === 'ko' ? '?�체' : 'All'}
                     </Badge>
                     {uniquePracticeAreas.map((area) => (
                       <Badge
@@ -195,7 +195,7 @@ export default function AttorneysPage() {
 
                 <div>
                   <h3 className="text-sm font-semibold text-foreground mb-3">
-                    {language === 'ko' ? '오피스' : 'Office'}
+                    {language === 'ko' ? '?�피?? : 'Office'}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     <Badge
@@ -204,7 +204,7 @@ export default function AttorneysPage() {
                       onClick={() => setSelectedOffice('all')}
                       data-testid="button-filter-office-all"
                     >
-                      {language === 'ko' ? '전체' : 'All'}
+                      {language === 'ko' ? '?�체' : 'All'}
                     </Badge>
                     {uniqueOffices.map((office) => (
                       <Badge
@@ -225,7 +225,7 @@ export default function AttorneysPage() {
                 <div className="flex items-center justify-between py-3 border-t">
                   <p className="text-sm text-muted-foreground">
                     {language === 'ko'
-                      ? `${filteredAttorneys.length}명의 변호사를 찾았습니다`
+                      ? `${filteredAttorneys.length}명의 변?�사�?찾았?�니??
                       : `Found ${filteredAttorneys.length} attorney(s)`}
                   </p>
                   <Button
@@ -235,7 +235,7 @@ export default function AttorneysPage() {
                     data-testid="button-clear-filters"
                   >
                     <X className="w-4 h-4 mr-2" />
-                    {language === 'ko' ? '필터 초기화' : 'Clear Filters'}
+                    {language === 'ko' ? '?�터 초기?? : 'Clear Filters'}
                   </Button>
                 </div>
               )}
@@ -244,7 +244,7 @@ export default function AttorneysPage() {
             {isLoadingAttorneys ? (
               <div className="text-center py-12">
                 <p className="text-muted-foreground">
-                  {language === 'ko' ? '로딩 중...' : 'Loading...'}
+                  {language === 'ko' ? '로딩 �?..' : 'Loading...'}
                 </p>
               </div>
             ) : filteredAttorneys.length > 0 ? (
@@ -296,7 +296,7 @@ export default function AttorneysPage() {
               <div className="text-center py-12">
                 <p className="text-muted-foreground">
                   {language === 'ko'
-                    ? '검색 결과가 없습니다.'
+                    ? '검??결과가 ?�습?�다.'
                     : 'No attorneys found matching your criteria.'}
                 </p>
               </div>

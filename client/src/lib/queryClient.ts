@@ -27,7 +27,7 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    // queryKey의 첫 번째 요소를 API 경로로 사용
+    // queryKey??�?번째 ?�소�?API 경로�??�용
     const path = queryKey[0] as string;
     const res = await api.get(path);
 
