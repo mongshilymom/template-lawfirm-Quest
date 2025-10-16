@@ -6,6 +6,15 @@ import { Building2, Users, Globe, Award } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { Office, Attorney } from '@shared/schema';
 
+function pad2(n: number) {
+  return String(n).padStart(2, '0');
+}
+
+// index(0~7) → /images/attorneys/attorney-0X.png
+function getLocalHeadshotPath(index: number) {
+  return `/images/attorneys/attorney-${pad2(index + 1)}.png`;
+}
+
 export default function AboutPage() {
   const { language } = useLanguage();
 
@@ -63,16 +72,13 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-foreground/70" />
           <div className="relative h-full flex items-center justify-center">
             <div className="text-center text-white">
-              <h1 
+              <h1
                 className="text-5xl md:text-6xl font-serif font-bold mb-4"
                 data-testid="text-about-hero-title"
               >
                 {language === 'ko' ? '회사 소개' : 'About QUEST Legal'}
               </h1>
-              <p 
-                className="text-xl"
-                data-testid="text-about-hero-subtitle"
-              >
+              <p className="text-xl" data-testid="text-about-hero-subtitle">
                 {language === 'ko'
                   ? 'QUEST Legal | 전문 법률 서비스'
                   : 'QUEST Legal | Professional Legal Services'}
@@ -85,7 +91,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
               <div>
-                <h2 
+                <h2
                   className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-6"
                   data-testid="text-firm-overview-title"
                 >
@@ -112,20 +118,20 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (
-                  <Card 
-                    key={index} 
+                  <Card
+                    key={index}
                     className="hover-elevate active-elevate-2 transition-all"
                     data-testid={`card-stat-${index}`}
                   >
                     <CardContent className="p-6 text-center">
                       <stat.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                      <div 
+                      <div
                         className="text-4xl font-bold text-foreground mb-2"
                         data-testid={`text-stat-value-${index}`}
                       >
                         {language === 'ko' ? stat.valueKo : stat.valueEn}
                       </div>
-                      <div 
+                      <div
                         className="text-sm text-muted-foreground"
                         data-testid={`text-stat-label-${index}`}
                       >
@@ -138,7 +144,7 @@ export default function AboutPage() {
             </div>
 
             <div className="mb-20">
-              <h2 
+              <h2
                 className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                 data-testid="text-global-offices-title"
               >
@@ -155,19 +161,19 @@ export default function AboutPage() {
                       <div className="flex items-start gap-3">
                         <Building2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                         <div>
-                          <h3 
+                          <h3
                             className="font-semibold text-foreground mb-2"
                             data-testid={`text-office-name-${office.id}`}
                           >
                             {language === 'ko' ? office.nameKo : office.nameEn}
                           </h3>
-                          <p 
+                          <p
                             className="text-sm text-muted-foreground"
                             data-testid={`text-office-address-${office.id}`}
                           >
                             {language === 'ko' ? office.addressKo : office.addressEn}
                           </p>
-                          <span 
+                          <span
                             className="inline-block mt-2 text-xs px-2 py-1 bg-muted rounded-md text-muted-foreground"
                             data-testid={`text-office-type-${office.id}`}
                           >
@@ -182,45 +188,62 @@ export default function AboutPage() {
             </div>
 
             <div>
-              <h2 
+              <h2
                 className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                 data-testid="text-key-attorneys-title"
               >
                 {language === 'ko' ? '주요 구성원' : 'Key Attorneys'}
               </h2>
+
+              {/* A안: 정적 경로 직접 사용 */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                {attorneys.slice(0, 8).map((attorney) => (
-                  <div
-                    key={attorney.id}
-                    className="group"
-                    data-testid={`card-attorney-${attorney.id}`}
-                  >
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-md mb-4 bg-muted">
-                      <img
-                        src={attorney.imageUrl}
-                        alt={language === 'ko' ? attorney.nameKo : attorney.nameEn}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                {attorneys.slice(0, 8).map((attorney, index) => {
+                  const localSrc = getLocalHeadshotPath(index);
+                  const displayName =
+                    language === 'ko' ? attorney.nameKo : attorney.nameEn;
+
+                  return (
+                    <div
+                      key={attorney.id}
+                      className="group"
+                      data-testid={`card-attorney-${attorney.id}`}
+                    >
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-md mb-4 bg-muted">
+                        <img
+                          src={localSrc}
+                          alt={displayName}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          onError={(e) => {
+                            // 만약 로컬 파일이 없으면, 기존 API 이미지로 폴백
+                            const target = e.currentTarget as HTMLImageElement;
+                            if (attorney.imageUrl && target.src !== attorney.imageUrl) {
+                              target.src = attorney.imageUrl;
+                            }
+                          }}
+                        />
+                      </div>
+                      <h3
+                        className="font-semibold text-foreground mb-1"
+                        data-testid={`text-attorney-name-${attorney.id}`}
+                      >
+                        {displayName}
+                      </h3>
+                      <p
+                        className="text-sm text-muted-foreground mb-2"
+                        data-testid={`text-attorney-title-${attorney.id}`}
+                      >
+                        {language === 'ko' ? attorney.titleKo : attorney.titleEn}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {language === 'ko'
+                          ? attorney.practiceAreasKo.slice(0, 2).join(', ')
+                          : attorney.practiceAreasEn.slice(0, 2).join(', ')}
+                      </p>
                     </div>
-                    <h3 
-                      className="font-semibold text-foreground mb-1"
-                      data-testid={`text-attorney-name-${attorney.id}`}
-                    >
-                      {language === 'ko' ? attorney.nameKo : attorney.nameEn}
-                    </h3>
-                    <p 
-                      className="text-sm text-muted-foreground mb-2"
-                      data-testid={`text-attorney-title-${attorney.id}`}
-                    >
-                      {language === 'ko' ? attorney.titleKo : attorney.titleEn}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {language === 'ko'
-                        ? attorney.practiceAreasKo.slice(0, 2).join(', ')
-                        : attorney.practiceAreasEn.slice(0, 2).join(', ')}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
