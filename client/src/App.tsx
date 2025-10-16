@@ -11,6 +11,7 @@ import EventsPage from "@/pages/EventsPage";
 import AttorneysPage from "@/pages/AttorneysPage";
 import ContactPage from "@/pages/ContactPage";
 import NotFound from "@/pages/not-found";
+import LetYouBadge from "@/components/LetYouBadge";
 
 function Router() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <TooltipProvider>
         <ThemeProvider>
           <LanguageProvider>
+            <LetYouBadge />
             <Toaster />
             <Router />
           </LanguageProvider>
