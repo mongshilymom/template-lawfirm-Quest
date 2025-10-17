@@ -237,7 +237,7 @@ export default function ContactPage() {
                               {...field}
                               value={field.value || ''}
                               placeholder={
-                                language === 'ko' ? '?�사�?(?�택?�항)' : 'Company (Optional)'
+                                language === 'ko' ? '회사명 (선택사항)' : 'Company (Optional)'
                               }
                               data-testid="input-contact-company"
                             />
@@ -253,14 +253,14 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '?�목 *' : 'Subject *'}
+                            {language === 'ko' ? '제목 *' : 'Subject *'}
                           </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               placeholder={
                                 language === 'ko'
-                                  ? '문의 ?�목???�력?�주?�요'
+                                  ? '문의 제목을 입력해주세요'
                                   : 'Enter inquiry subject'
                               }
                               data-testid="input-contact-subject"
@@ -277,7 +277,7 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '문의 ?�용 *' : 'Message *'}
+                            {language === 'ko' ? '문의 내용 *' : 'Message *'}
                           </FormLabel>
                           <FormControl>
                             <Textarea
@@ -285,7 +285,7 @@ export default function ContactPage() {
                               rows={6}
                               placeholder={
                                 language === 'ko'
-                                  ? '문의 ?�용???�세???�력?�주?�요'
+                                  ? '문의 내용을 상세히 입력해주세요'
                                   : 'Please describe your inquiry in detail'
                               }
                               data-testid="input-contact-message"
@@ -299,7 +299,7 @@ export default function ContactPage() {
                     <div className="mb-4 p-4 bg-muted/50 rounded-md">
                       <p className="text-xs text-muted-foreground leading-relaxed" data-testid="text-privacy-notice">
                         {language === 'ko' 
-                          ? '?�집 ??��: ?�름, ?�메?? ?�화번호(?�택), ?�사�??�택), ?�목, 문의?�용 | ?�집 목적: ?�담 ?�수 �??��? | 보�? 기간: 12개월 | ?????�공 �?처리 ?�탁: ?�음'
+                          ? '수집 항목: 이름, 이메일, 전화번호(선택), 회사명(선택), 제목, 문의내용 | 수집 목적: 상담 접수 및 회신 | 보존 기간: 12개월 | 제3자 제공 및 처리 위탁: 없음'
                           : 'Collection: Name, Email, Phone (optional), Company (optional), Subject, Message | Purpose: Consultation processing and response | Retention: 12 months | Third-party provision/outsourcing: None'}
                       </p>
                     </div>
@@ -312,10 +312,10 @@ export default function ContactPage() {
                     >
                       {mutation.isPending
                         ? language === 'ko'
-                          ? '?�출 �?..'
+                          ? '제출 중...'
                           : 'Submitting...'
                         : language === 'ko'
-                        ? '문의?�기'
+                        ? '문의하기'
                         : 'Submit Inquiry'}
                     </Button>
                   </form>
@@ -327,7 +327,7 @@ export default function ContactPage() {
                   className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                   data-testid="text-office-locations-title"
                 >
-                  {language === 'ko' ? '?�피???�치' : 'Office Locations'}
+                  {language === 'ko' ? '오피스 위치' : 'Office Locations'}
                 </h2>
 
                 <div className="space-y-6">
@@ -368,16 +368,16 @@ export default function ContactPage() {
                         <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold text-foreground mb-2">
-                            {language === 'ko' ? '?�무 ?�간' : 'Business Hours'}
+                            {language === 'ko' ? '업무 시간' : 'Business Hours'}
                           </h4>
                           <p className="text-muted-foreground">
                             {language === 'ko'
-                              ? '?�요??- 금요?? 09:00 - 18:00'
+                              ? '월요일 - 금요일: 09:00 - 18:00'
                               : 'Monday - Friday: 09:00 - 18:00'}
                           </p>
                           <p className="text-muted-foreground">
                             {language === 'ko'
-                              ? '?�요?? ?�요?? 공휴?? ?�무'
+                              ? '토요일, 일요일, 공휴일: 휴무'
                               : 'Saturday, Sunday, Holidays: Closed'}
                           </p>
                         </div>
@@ -395,11 +395,11 @@ export default function ContactPage() {
             <Card className="border-primary/20">
               <CardContent className="p-8">
                 <h3 className="text-lg font-semibold text-foreground mb-4">
-                  {language === 'ko' ? '법적 고�?' : 'Legal Notice'}
+                  {language === 'ko' ? '법적 고지' : 'Legal Notice'}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {language === 'ko'
-                    ? '�??�사?�트??ZENTA LawFirm WebSite ?�루?�으�??�작?�었?�니?? ?�제 법률 ?�담???�요?�신 경우 ?�문 변?�사?� 직접 ?�락?�시�?바랍?�다.'
+                    ? '본 웹사이트는 ZENTA LawFirm WebSite 솔루션으로 제작되었습니다. 실제 법률 상담이 필요하신 경우 전문 변호사에게 직접 연락하시기 바랍니다.'
                     : 'This website is built with ZENTA LawFirm WebSite solution. For actual legal consultation, please contact professional attorneys directly.'}
                 </p>
               </CardContent>
