@@ -23,7 +23,7 @@ export default function LetYouBadge() {
 
   return (
     <>
-      {/* ?�단 고정 배�? */}
+      {/* 하단 고정 배너 */}
       <div
         id="letyou-badge"
         style={{ position:'fixed', left:0, right:0, bottom:0, zIndex:2147483647, pointerEvents:'none' }}
@@ -37,7 +37,7 @@ export default function LetYouBadge() {
             backdropFilter:'saturate(180%) blur(6px)', borderTop:'1px solid rgba(255,255,255,.12)', borderRadius:10,
           }}
         >
-          {/* 좌측: 로고 + ?�내�?*/}
+          {/* 좌측: 로고 + 안내문 */}
           <div style={{ display:'flex', alignItems:'center', gap:10, pointerEvents:'none' }}>
             <img
               src="/brand/letyou-logo-48.png"
@@ -48,10 +48,10 @@ export default function LetYouBadge() {
               style={{ display:'block', opacity:.95, borderRadius:4 }}
               onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/brand/letyou-logo-24.png'; }}
             />
-            <span>???�이지??<strong>LetYou ?�플�??�트?�리??/strong> ?�니??/span>
+            <span>이 페이지는 <strong>LetYou 템플릿 갤러리</strong>입니다</span>
           </div>
 
-          {/* ?�측: 방문 버튼 + ?�기 버튼 */}
+          {/* 우측: 방문 버튼 + 닫기 버튼 */}
           <div style={{ display:'flex', gap:8 }}>
             <a
               href={backHref}
@@ -72,8 +72,8 @@ export default function LetYouBadge() {
                 width:36, height:36, borderRadius:999, border:'1px solid rgba(255,255,255,.25)',
                 display:'inline-flex', alignItems:'center', justifyContent:'center', fontSize:18, lineHeight:1,
               }}
-              aria-label="배�? ?�기"
-              title="?�기"
+              aria-label="배너 닫기"
+              title="닫기"
             >
               ×
             </button>
@@ -81,7 +81,7 @@ export default function LetYouBadge() {
         </div>
       </div>
 
-      {/* 컨텐츠�? 가?��?지 ?�도�??�단 ?�백 */}
+      {/* 컨텐츠가 가려지지 않도록 하단 여백 */}
       <div style={{ height:64 }} />
     </>
   );

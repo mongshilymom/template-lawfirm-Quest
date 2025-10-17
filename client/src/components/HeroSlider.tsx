@@ -1,31 +1,28 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const heroSlides = [
   {
-    imageUrl:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop',
-    // ?�구?�항: '기업지�?구조 ?�문 법률 ?�비??
-    titleKo: '기업지�?구조 ?�문 법률 ?�비??,
+    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop',
+    titleKo: '기업지배구조 전문 법률 서비스',
     titleEn: 'Corporate Governance Legal Services',
-    subtitleKo: '변?�하???�업·규제 ?�경 ?�에?�도 최적??방향???�시?�니??,
+    subtitleKo: '변화하는 산업·규제 환경 속에서도 최적의 방향을 제시합니다',
     subtitleEn: 'Providing optimal solutions in changing regulatory environments',
   },
   {
-    imageUrl:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop',
-    titleKo: '글로벌 ?�트?�크',
+    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop',
+    titleKo: '글로벌 네트워크',
     titleEn: 'Global Network',
-    subtitleKo: '9�??�외 ?�무?��? ?�한 �?�� 법률 ?�비??,
+    subtitleKo: '9개 해외 사무소를 통한 국제 법률 서비스',
     subtitleEn: 'International legal services through 9 global offices',
   },
   {
-    imageUrl:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop',
-    // ?�구?�항: '550?�명???�문가' ???��?    titleKo: '?�신??비즈?�스�??�해?�는 로펌',
-    titleEn: 'A Law Firm That Understands Your Business',
-    subtitleKo: '?��???경험�??�문?�을 바탕?�로 고객 맞춤???�루???�공',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop',
+    titleKo: '550여명의 전문가',
+    titleEn: '550+ Legal Professionals',
+    subtitleKo: '풍부한 경험과 전문성을 바탕으로 고객 맞춤형 솔루션 제공',
     subtitleEn: 'Customized solutions based on extensive experience and expertise',
   },
 ];
@@ -37,9 +34,11 @@ export function HeroSlider() {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
+
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
@@ -70,28 +69,19 @@ export function HeroSlider() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.imageUrl})` }}
-            aria-hidden="true"
           />
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/50 to-foreground/70"
-            aria-hidden="true"
-          />
-
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/50 to-foreground/70" />
+          
           <div className="relative h-full flex items-center justify-center">
-            <div className="mx-auto px-6 lg:px-8 text-center w-full max-w-6xl">
-              <h1
-                className="
-                  font-bold text-white mb-6 leading-tight tracking-tight
-                  text-4xl md:text-6xl lg:text-7xl
-                  whitespace-normal xl:whitespace-nowrap
-                "
+            <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+              <h1 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
                 data-testid={`hero-title-${index}`}
               >
                 {language === 'ko' ? slide.titleKo : slide.titleEn}
               </h1>
-
-              <p
-                className="text-base md:text-xl lg:text-2xl text-white/90 leading-relaxed"
+              <p 
+                className="text-xl md:text-2xl text-white/90 leading-relaxed"
                 data-testid={`hero-subtitle-${index}`}
               >
                 {language === 'ko' ? slide.subtitleKo : slide.subtitleEn}
@@ -101,58 +91,53 @@ export function HeroSlider() {
         </div>
       ))}
 
-      {/* ?�쪽 ?�살??*/}
-      <button
-        type="button"
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={goToPrevious}
-        aria-label="?�전 ?�라?�드"
         data-testid="button-prev-slide"
-        className="
-          absolute top-1/2 -translate-y-1/2 right-auto left-4 md:left-6 lg:left-8
-          z-20 grid place-items-center w-12 h-12 rounded-full
-          bg-white/20 hover:bg-white/30 backdrop-blur
-          text-white transition focus:outline-none
-          focus-visible:ring-2 focus-visible:ring-white/80
-        "
+        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full h-12 w-12"
       >
         <ChevronLeft className="w-6 h-6" />
-      </button>
+      </Button>
 
-      {/* ?�른�??�살??- 좌표 충돌 방�? ?�해 left-auto 명시 */}
-      <button
-        type="button"
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={goToNext}
-        aria-label="?�음 ?�라?�드"
         data-testid="button-next-slide"
-        className="
-          absolute top-1/2 -translate-y-1/2 left-auto right-4 md:right-6 lg:right-8
-          z-20 grid place-items-center w-12 h-12 rounded-full
-          bg-white/20 hover:bg-white/30 backdrop-blur
-          text-white transition focus:outline-none
-          focus-visible:ring-2 focus-visible:ring-white/80
-        "
+        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white rounded-full h-12 w-12"
       >
         <ChevronRight className="w-6 h-6" />
-      </button>
+      </Button>
 
-      {/* ?�디케?�터 */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
         {heroSlides.map((_, index) => (
-          <button
+          <Button
             key={index}
-            type="button"
+            variant="ghost"
+            size="icon"
             onClick={() => goToSlide(index)}
-            aria-label={`${index + 1}�??�라?�드�??�동`}
             data-testid={`button-slide-${index}`}
-            className={`
-              h-2 p-0 rounded-full transition-all
-              ${index === currentSlide ? 'w-12 bg-white' : 'w-2 bg-white/50'}
-            `}
+            className={`h-2 p-0 rounded-full transition-all hover:bg-transparent ${
+              index === currentSlide ? 'w-12 bg-white' : 'w-2 bg-white/50'
+            }`}
           />
         ))}
       </div>
 
-      {/* ?�구?�항: ?�크�??�내 문구 ?�거??*/}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2">
+        <a
+          href="#practices"
+          data-testid="link-scroll-down"
+          className="text-white text-sm tracking-widest flex flex-col items-center gap-2 hover-elevate active-elevate-2 px-4 py-2 rounded-md"
+        >
+          <span>{language === 'ko' ? 'SCROLL' : 'SCROLL'}</span>
+          <span className="text-xs opacity-80">
+            {language === 'ko' ? '화면을 아래로 스크롤 하세요' : 'Scroll down'}
+          </span>
+        </a>
+      </div>
     </div>
   );
 }
