@@ -18,7 +18,7 @@ const slides = [
   },
 ];
 
-export default function HeroSlider() {
+export function HeroSlider() {
   const [i, setI] = React.useState(0);
   const s = slides[i];
   const prev = () => setI((v) => (v - 1 + slides.length) % slides.length);
