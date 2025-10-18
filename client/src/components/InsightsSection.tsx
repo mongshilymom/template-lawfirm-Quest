@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@/components/ui/card';
+﻿import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -36,7 +36,7 @@ export function InsightsSection({ newsletters }: InsightsSectionProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <Badge className="bg-white/90 text-foreground mb-2" variant="secondary">
-                    {language === 'ko' ? '뉴스레터' : 'Newsletter'}
+                    {language === 'ko' ? '?댁뒪?덊꽣' : 'Newsletter'}
                   </Badge>
                 </div>
               </div>
@@ -55,7 +55,7 @@ export function InsightsSection({ newsletters }: InsightsSectionProps) {
                   className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all text-sm p-0 h-auto"
                   data-testid={`button-read-newsletter-${newsletter.id}`}
                 >
-                  <span>{language === 'ko' ? '자세히 보기' : 'Read More'}</span>
+                  <span>{language === 'ko' ? '?먯꽭??蹂닿린' : 'Read More'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </CardContent>

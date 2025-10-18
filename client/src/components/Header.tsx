@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useRoute } from 'wouter';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -111,11 +111,11 @@ export function Header() {
               size="icon"
               onClick={toggleLanguage}
               data-testid="button-language-toggle"
-              aria-label={`Switch to ${language === 'ko' ? 'English' : '한국어'}`}
+              aria-label={`Switch to ${language === 'ko' ? 'English' : '?쒓뎅??}`}
               className="rounded-md"
             >
               <Globe className="w-5 h-5" />
-              <span className="sr-only">{`Switch to ${language === 'ko' ? 'English' : '한국어'}`}</span>
+              <span className="sr-only">{`Switch to ${language === 'ko' ? 'English' : '?쒓뎅??}`}</span>
             </Button>
 
             <Button

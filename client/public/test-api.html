@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -44,15 +44,15 @@
     </style>
 </head>
 <body>
-    <h1>🧪 API Test - QUEST Legal</h1>
+    <h1>?㎦ API Test - QUEST Legal</h1>
     
     <div class="container">
-        <h2>환경 정보</h2>
+        <h2>?섍꼍 ?뺣낫</h2>
         <div id="env-info"></div>
     </div>
 
     <div class="container">
-        <h2>API 테스트</h2>
+        <h2>API ?뚯뒪??/h2>
         <button onclick="testAPI('/api/practice-areas')">Test Practice Areas</button>
         <button onclick="testAPI('/api/news')">Test News</button>
         <button onclick="testAPI('/api/newsletters')">Test Newsletters</button>
@@ -63,11 +63,11 @@
     </div>
 
     <script>
-        // 환경 정보 표시
+        // ?섍꼍 ?뺣낫 ?쒖떆
         const envInfo = document.getElementById('env-info');
         envInfo.innerHTML = `
             <div class="status info">
-                <strong>현재 URL:</strong> ${window.location.href}<br>
+                <strong>?꾩옱 URL:</strong> ${window.location.href}<br>
                 <strong>Origin:</strong> ${window.location.origin}<br>
                 <strong>Protocol:</strong> ${window.location.protocol}<br>
                 <strong>Host:</strong> ${window.location.host}
@@ -94,7 +94,7 @@
 
                 resultsDiv.innerHTML = `
                     <div class="status success">
-                        <strong>✅ Success!</strong><br>
+                        <strong>??Success!</strong><br>
                         Endpoint: ${endpoint}<br>
                         Status: ${response.status}<br>
                         Data count: ${Array.isArray(data) ? data.length : 'N/A'}
@@ -105,7 +105,7 @@
                 console.error('Error:', error);
                 resultsDiv.innerHTML = `
                     <div class="status error">
-                        <strong>❌ Error!</strong><br>
+                        <strong>??Error!</strong><br>
                         Endpoint: ${endpoint}<br>
                         Error: ${error.message}
                     </div>
@@ -114,8 +114,7 @@
             }
         }
 
-        // 페이지 로드 시 자동으로 practice-areas 테스트
-        window.addEventListener('load', () => {
+        // ?섏씠吏 濡쒕뱶 ???먮룞?쇰줈 practice-areas ?뚯뒪??        window.addEventListener('load', () => {
             console.log('=== API Test Page Loaded ===');
             console.log('Testing /api/practice-areas automatically...');
             testAPI('/api/practice-areas');

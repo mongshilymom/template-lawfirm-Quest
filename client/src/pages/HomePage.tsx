@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+﻿import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { HeroSlider } from '@/components/HeroSlider';

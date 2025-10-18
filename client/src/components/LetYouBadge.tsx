@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 
 export default function LetYouBadge() {
   const [hidden, setHidden] = useState(false);
@@ -23,7 +23,7 @@ export default function LetYouBadge() {
 
   return (
     <>
-      {/* 하단 고정 배지 */}
+      {/* ?섎떒 怨좎젙 諛곗? */}
       <div
         id="letyou-badge"
         style={{ position:'fixed', left:0, right:0, bottom:0, zIndex:2147483647, pointerEvents:'none' }}
@@ -37,13 +37,13 @@ export default function LetYouBadge() {
             backdropFilter:'saturate(180%) blur(6px)', borderTop:'1px solid rgba(255,255,255,.12)', borderRadius:10,
           }}
         >
-          {/* 좌측: 로고 + 안내문 */}
+          {/* 醫뚯륫: 濡쒓퀬 + ?덈궡臾?*/}
           <div style={{ display:'flex', alignItems:'center', gap:10, pointerEvents:'none' }}>
             <img src="/brand/letyou-logo-48.png" alt="LetYou" width={24} height={24} />
-            <span>이 페이지는 <strong>LetYou 홈제이지 포트폴리오</strong> 입니다</span>
+            <span>???섏씠吏??<strong>LetYou ?덉젣?댁? ?ы듃?대━??/strong> ?낅땲??/span>
           </div>
 
-          {/* 우측: 방문 버튼 + 닫기 버튼 */}
+          {/* ?곗륫: 諛⑸Ц 踰꾪듉 + ?リ린 踰꾪듉 */}
           <div style={{ display:'flex', gap:8 }}>
             <a
               href={backHref}
@@ -52,9 +52,9 @@ export default function LetYouBadge() {
                 padding:'8px 14px', borderRadius:999, textDecoration:'none', fontWeight:700,
                 display:'inline-flex', alignItems:'center', gap:6,
               }}
-              aria-label="LetYou.kr 방문"
+              aria-label="LetYou.kr 諛⑸Ц"
             >
-              LetYou.kr 방문 <span aria-hidden>{'\u203A'}</span>
+              LetYou.kr 諛⑸Ц <span aria-hidden>{'\u203A'}</span>
             </a>
 
             <button
@@ -64,16 +64,16 @@ export default function LetYouBadge() {
                 width:36, height:36, borderRadius:999, border:'1px solid rgba(255,255,255,.25)',
                 display:'inline-flex', alignItems:'center', justifyContent:'center', fontSize:18, lineHeight:1,
               }}
-              aria-label="배지 닫기"
-              title="닫기"
+              aria-label="諛곗? ?リ린"
+              title="?リ린"
             >
-              ×
+              횞
             </button>
           </div>
         </div>
       </div>
 
-      {/* 컨텐츠가 가려지지 않도록 하단 여백 */}
+      {/* 而⑦뀗痢좉? 媛?ㅼ?吏 ?딅룄濡??섎떒 ?щ갚 */}
       <div style={{ height:64 }} />
     </>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -29,10 +29,10 @@ export default function ContactPage() {
   const { toast } = useToast();
 
   const formSchema = insertContactSchema.extend({
-    name: z.string().min(1, language === 'ko' ? '이름을 입력해주세요.' : 'Name is required.'),
-    email: z.string().email(language === 'ko' ? '유효한 이메일을 입력해주세요.' : 'Invalid email address.'),
-    subject: z.string().min(1, language === 'ko' ? '제목을 입력해주세요.' : 'Subject is required.'),
-    message: z.string().min(10, language === 'ko' ? '메시지는 최소 10자 이상이어야 합니다.' : 'Message must be at least 10 characters.'),
+    name: z.string().min(1, language === 'ko' ? '?대쫫???낅젰?댁＜?몄슂.' : 'Name is required.'),
+    email: z.string().email(language === 'ko' ? '?좏슚???대찓?쇱쓣 ?낅젰?댁＜?몄슂.' : 'Invalid email address.'),
+    subject: z.string().min(1, language === 'ko' ? '?쒕ぉ???낅젰?댁＜?몄슂.' : 'Subject is required.'),
+    message: z.string().min(10, language === 'ko' ? '硫붿떆吏??理쒖냼 10???댁긽?댁뼱???⑸땲??' : 'Message must be at least 10 characters.'),
   });
 
   type FormData = z.infer<typeof formSchema>;
@@ -60,21 +60,21 @@ export default function ContactPage() {
     },
     onSuccess: () => {
       toast({
-        title: language === 'ko' ? '문의 접수 완료' : 'Contact Submitted',
+        title: language === 'ko' ? '臾몄쓽 ?묒닔 ?꾨즺' : 'Contact Submitted',
         description:
           language === 'ko'
-            ? '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.'
+            ? '臾몄쓽媛 ?깃났?곸쑝濡??묒닔?섏뿀?듬땲?? 鍮좊Ⅸ ?쒖씪 ?댁뿉 ?곕씫?쒕━寃좎뒿?덈떎.'
             : 'Your inquiry has been submitted successfully. We will contact you soon.',
       });
       form.reset();
     },
     onError: (error: any) => {
       toast({
-        title: language === 'ko' ? '오류' : 'Error',
+        title: language === 'ko' ? '?ㅻ쪟' : 'Error',
         description:
           error.message ||
           (language === 'ko'
-            ? '문의 접수 중 오류가 발생했습니다.'
+            ? '臾몄쓽 ?묒닔 以??ㅻ쪟媛 諛쒖깮?덉뒿?덈떎.'
             : 'An error occurred while submitting your inquiry.'),
         variant: 'destructive',
       });
@@ -87,21 +87,21 @@ export default function ContactPage() {
 
   const officeLocations = [
     {
-      nameKo: '서울 본사',
+      nameKo: '?쒖슱 蹂몄궗',
       nameEn: 'Seoul Headquarters',
       address:
         language === 'ko'
-          ? '서울특별시 강남구 테헤란로 152 강남파이낸스센터 빌딩'
+          ? '?쒖슱?밸퀎??媛뺣궓援??뚰뿤?濡?152 媛뺣궓?뚯씠?몄뒪?쇳꽣 鍮뚮뵫'
           : '152, Teheran-ro, Gangnam-gu, Seoul, Korea',
       phone: '+82-2-3404-0000',
       email: 'info@questlegal.co.kr',
     },
     {
-      nameKo: '부산 사무소',
+      nameKo: '遺???щТ??,
       nameEn: 'Busan Office',
       address:
         language === 'ko'
-          ? '부산광역시 해운대구 센텀중앙로 97'
+          ? '遺?곌킅??떆 ?댁슫?援??쇳?以묒븰濡?97'
           : '97, Centum jungang-ro, Haeundae-gu, Busan, Korea',
       phone: '+82-51-742-0505',
       email: 'busan@questlegal.co.kr',
@@ -127,14 +127,14 @@ export default function ContactPage() {
                 className="text-5xl md:text-6xl font-serif font-bold mb-4"
                 data-testid="text-contact-hero-title"
               >
-                {language === 'ko' ? '문의하기' : 'Contact Us'}
+                {language === 'ko' ? '臾몄쓽?섍린' : 'Contact Us'}
               </h1>
               <p
                 className="text-xl"
                 data-testid="text-contact-hero-subtitle"
               >
                 {language === 'ko'
-                  ? '법률 상담이 필요하신가요? 언제든 연락 주세요.'
+                  ? '踰뺣쪧 ?곷떞???꾩슂?섏떊媛?? ?몄젣???곕씫 二쇱꽭??'
                   : 'Need legal consultation? Contact us anytime.'}
               </p>
             </div>
@@ -149,7 +149,7 @@ export default function ContactPage() {
                   className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                   data-testid="text-contact-form-title"
                 >
-                  {language === 'ko' ? '상담 신청' : 'Request Consultation'}
+                  {language === 'ko' ? '?곷떞 ?좎껌' : 'Request Consultation'}
                 </h2>
 
                 <Form {...form}>
@@ -160,13 +160,13 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '이름 *' : 'Name *'}
+                            {language === 'ko' ? '?대쫫 *' : 'Name *'}
                           </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               placeholder={
-                                language === 'ko' ? '홍길동' : 'John Doe'
+                                language === 'ko' ? '?띻만?? : 'John Doe'
                               }
                               data-testid="input-contact-name"
                             />
@@ -182,7 +182,7 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '이메일 *' : 'Email *'}
+                            {language === 'ko' ? '?대찓??*' : 'Email *'}
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -207,7 +207,7 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '전화번호' : 'Phone'}
+                            {language === 'ko' ? '?꾪솕踰덊샇' : 'Phone'}
                           </FormLabel>
                           <FormControl>
                             <Input
@@ -230,14 +230,14 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '회사명' : 'Company'}
+                            {language === 'ko' ? '?뚯궗紐? : 'Company'}
                           </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               value={field.value || ''}
                               placeholder={
-                                language === 'ko' ? '회사명 (선택사항)' : 'Company (Optional)'
+                                language === 'ko' ? '?뚯궗紐?(?좏깮?ы빆)' : 'Company (Optional)'
                               }
                               data-testid="input-contact-company"
                             />
@@ -253,14 +253,14 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '제목 *' : 'Subject *'}
+                            {language === 'ko' ? '?쒕ぉ *' : 'Subject *'}
                           </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
                               placeholder={
                                 language === 'ko'
-                                  ? '문의 제목을 입력해주세요'
+                                  ? '臾몄쓽 ?쒕ぉ???낅젰?댁＜?몄슂'
                                   : 'Enter inquiry subject'
                               }
                               data-testid="input-contact-subject"
@@ -277,7 +277,7 @@ export default function ContactPage() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            {language === 'ko' ? '문의 내용 *' : 'Message *'}
+                            {language === 'ko' ? '臾몄쓽 ?댁슜 *' : 'Message *'}
                           </FormLabel>
                           <FormControl>
                             <Textarea
@@ -285,7 +285,7 @@ export default function ContactPage() {
                               rows={6}
                               placeholder={
                                 language === 'ko'
-                                  ? '문의 내용을 상세히 입력해주세요'
+                                  ? '臾몄쓽 ?댁슜???곸꽭???낅젰?댁＜?몄슂'
                                   : 'Please describe your inquiry in detail'
                               }
                               data-testid="input-contact-message"
@@ -299,7 +299,7 @@ export default function ContactPage() {
                     <div className="mb-4 p-4 bg-muted/50 rounded-md">
                       <p className="text-xs text-muted-foreground leading-relaxed" data-testid="text-privacy-notice">
                         {language === 'ko' 
-                          ? '수집 항목: 이름, 이메일, 전화번호(선택), 회사명(선택), 제목, 문의내용 | 수집 목적: 상담 접수 및 답변 | 보관 기간: 12개월 | 제3자 제공 및 처리 위탁: 없음'
+                          ? '?섏쭛 ??ぉ: ?대쫫, ?대찓?? ?꾪솕踰덊샇(?좏깮), ?뚯궗紐??좏깮), ?쒕ぉ, 臾몄쓽?댁슜 | ?섏쭛 紐⑹쟻: ?곷떞 ?묒닔 諛??듬? | 蹂닿? 湲곌컙: 12媛쒖썡 | ?????쒓났 諛?泥섎━ ?꾪긽: ?놁쓬'
                           : 'Collection: Name, Email, Phone (optional), Company (optional), Subject, Message | Purpose: Consultation processing and response | Retention: 12 months | Third-party provision/outsourcing: None'}
                       </p>
                     </div>
@@ -312,10 +312,10 @@ export default function ContactPage() {
                     >
                       {mutation.isPending
                         ? language === 'ko'
-                          ? '제출 중...'
+                          ? '?쒖텧 以?..'
                           : 'Submitting...'
                         : language === 'ko'
-                        ? '문의하기'
+                        ? '臾몄쓽?섍린'
                         : 'Submit Inquiry'}
                     </Button>
                   </form>
@@ -327,7 +327,7 @@ export default function ContactPage() {
                   className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-8"
                   data-testid="text-office-locations-title"
                 >
-                  {language === 'ko' ? '오피스 위치' : 'Office Locations'}
+                  {language === 'ko' ? '?ㅽ뵾???꾩튂' : 'Office Locations'}
                 </h2>
 
                 <div className="space-y-6">
@@ -368,16 +368,16 @@ export default function ContactPage() {
                         <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                         <div>
                           <h4 className="font-semibold text-foreground mb-2">
-                            {language === 'ko' ? '업무 시간' : 'Business Hours'}
+                            {language === 'ko' ? '?낅Т ?쒓컙' : 'Business Hours'}
                           </h4>
                           <p className="text-muted-foreground">
                             {language === 'ko'
-                              ? '월요일 - 금요일: 09:00 - 18:00'
+                              ? '?붿슂??- 湲덉슂?? 09:00 - 18:00'
                               : 'Monday - Friday: 09:00 - 18:00'}
                           </p>
                           <p className="text-muted-foreground">
                             {language === 'ko'
-                              ? '토요일, 일요일, 공휴일: 휴무'
+                              ? '?좎슂?? ?쇱슂?? 怨듯쑕?? ?대Т'
                               : 'Saturday, Sunday, Holidays: Closed'}
                           </p>
                         </div>
@@ -395,11 +395,11 @@ export default function ContactPage() {
             <Card className="border-primary/20">
               <CardContent className="p-8">
                 <h3 className="text-lg font-semibold text-foreground mb-4">
-                  {language === 'ko' ? '법적 고지' : 'Legal Notice'}
+                  {language === 'ko' ? '踰뺤쟻 怨좎?' : 'Legal Notice'}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {language === 'ko'
-                    ? '본 웹사이트는 교육 및 시연 목적의 템플릿입니다. QUEST Legal은 데모 브랜드이며, 본 사이트는 실제 법률 서비스를 제공하지 않습니다. 문의 양식을 통해 제출된 정보는 시연 목적으로만 사용되며, 실제 법률 자문이나 상담으로 간주되지 않습니다. 실제 법률 자문이 필요한 경우 자격을 갖춘 법률 전문가와 상담하시기 바랍니다.'
+                    ? '蹂??뱀궗?댄듃??援먯쑁 諛??쒖뿰 紐⑹쟻???쒗뵆由우엯?덈떎. QUEST Legal? ?곕え 釉뚮옖?쒖씠硫? 蹂??ъ씠?몃뒗 ?ㅼ젣 踰뺣쪧 ?쒕퉬?ㅻ? ?쒓났?섏? ?딆뒿?덈떎. 臾몄쓽 ?묒떇???듯빐 ?쒖텧???뺣낫???쒖뿰 紐⑹쟻?쇰줈留??ъ슜?섎ŉ, ?ㅼ젣 踰뺣쪧 ?먮Ц?대굹 ?곷떞?쇰줈 媛꾩＜?섏? ?딆뒿?덈떎. ?ㅼ젣 踰뺣쪧 ?먮Ц???꾩슂??寃쎌슦 ?먭꺽??媛뽰텣 踰뺣쪧 ?꾨Ц媛? ?곷떞?섏떆湲?諛붾엻?덈떎.'
                     : 'This website is a demonstration template for educational purposes only. QUEST Legal is a demo brand, and this site does not provide actual legal services. Information submitted through contact forms is used for demonstration purposes only and does not constitute legal advice or consultation. For actual legal counsel, please consult with qualified legal professionals.'}
                 </p>
               </CardContent>

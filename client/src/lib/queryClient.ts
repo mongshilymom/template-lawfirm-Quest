@@ -1,4 +1,4 @@
-import { QueryClient, QueryFunction } from "@tanstack/react-query";
+﻿import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { api } from "./api";
 
 async function throwIfResNotOk(res: Response) {
@@ -27,7 +27,7 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    // queryKey의 첫 번째 요소를 API 경로로 사용
+    // queryKey??泥?踰덉㎏ ?붿냼瑜?API 寃쎈줈濡??ъ슜
     const path = queryKey[0] as string;
     const res = await api.get(path);
 

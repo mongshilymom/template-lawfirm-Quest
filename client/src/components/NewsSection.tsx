@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,10 +15,10 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
   const { language } = useLanguage();
 
   const categories = [
-    { value: 'all', labelKo: '전체', labelEn: 'All' },
+    { value: 'all', labelKo: '?꾩껜', labelEn: 'All' },
     { value: 'Select Topics', labelKo: 'Select Topics', labelEn: 'Select Topics' },
     { value: 'Awards', labelKo: 'Awards', labelEn: 'Awards' },
-    { value: '법인소식', labelKo: '법인소식', labelEn: 'Firm News' },
+    { value: '踰뺤씤?뚯떇', labelKo: '踰뺤씤?뚯떇', labelEn: 'Firm News' },
   ];
 
   const filteredNews =
@@ -94,7 +94,7 @@ export function NewsSection({ newsItems }: NewsSectionProps) {
                       className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all mt-4 p-0 h-auto"
                       data-testid={`button-read-more-${featuredNews.id}`}
                     >
-                      <span>{language === 'ko' ? '자세히 보기' : 'Read More'}</span>
+                      <span>{language === 'ko' ? '?먯꽭??蹂닿린' : 'Read More'}</span>
                       <ArrowRight className="w-4 h-4" />
                     </Button>
                   </CardContent>

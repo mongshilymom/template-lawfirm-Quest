@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -92,7 +92,7 @@ export function PracticeAreasSection({ practiceAreas }: PracticeAreasSectionProp
                   className="text-primary font-medium flex items-center gap-2 hover:gap-3 transition-all p-0 h-auto"
                   data-testid={`button-learn-more-${area.id}`}
                 >
-                  <span>{language === 'ko' ? '자세히 보기' : 'Learn More'}</span>
+                  <span>{language === 'ko' ? '?먯꽭??蹂닿린' : 'Learn More'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </CardContent>
